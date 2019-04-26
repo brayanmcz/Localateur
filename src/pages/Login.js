@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
 import styled from "styled-components";
-import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import {
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBCardBody,
+  MDBCard
+} from "mdbreact";
+import { Link } from "react-router-dom";
 
 const config = {
   apiKey: "AIzaSyCFc_Jl0OBWrQNTYh6kEQkdBbn_i_cAnZU",
@@ -13,21 +21,24 @@ firebase.initializeApp(config);
 
 const uiConfig = {
   signInFlow: "popup",
-  signInSuccessUrl: "/login",
+  signInSuccessUrl: "/",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   ]
 };
 
 const Wrapper = styled.div`
+  padding-top: 35px;
+  background-color: #efefef;
+  height: calc(100vh - 46px);
+
   .title {
     font-family: "Lobster Two", cursive;
     font-size: 70px;
     text-align: center;
     color: #f44336;
-    margin: 30px 15px;
-    margin-top: 0px;
+    margin: 0px 15px;
   }
 
   .form-control {
@@ -44,12 +55,13 @@ const Wrapper = styled.div`
     text-align: center;
   }
 
-  .separator-half{
+  .separator-half {
     display: inline-block;
     width: 90px;
     color: lightgrey;
   }
-  .separator-word{
+
+  .separator-word {
     position: relative;
     color: lightgrey;
     top: -12px;
@@ -57,21 +69,60 @@ const Wrapper = styled.div`
     margin-right: 15px;
   }
 
-  .center{
+  .center {
     margin: auto;
+    text-align: center;
   }
 
-  .btn-signin{
+  .btn-signin {
     position: relative;
     width: 220px;
-    background-color: #3454D1 !important;
+    background-color: #f44336 !important;
   }
 
-  .signin-message{
-    font-size: 13px;
+  .signin-title {
+    font-size: 30px;
     width: 220px;
     word-wrap: break-word;
-    text-align: justify;
+    text-align: center;
+    font-weight: 600;
+    color: #000f08;
+  }
+
+  .signup-text {
+    font-size: 13px;
+  }
+
+  .signup-link {
+    color: red;
+  }
+
+  .signup-link:hover {
+    cursor: pointer;
+  }
+
+  .signin-card {
+    margin: auto;
+    max-width: 300px !important;
+  }
+
+  .new-to-text {
+    color: grey;
+    font-weight: 200;
+  }
+
+  .mdl-button{
+    width: 220px;
+    /* margin: auto !important; */
+    left: -5px;
+    }
+
+  @media only screen and (max-width: 374px){
+    .mdl-button{
+    width: 220px;
+    margin: auto !important;
+    left: -10px;
+    }
   }
 `;
 
@@ -97,70 +148,70 @@ class LoginPage extends Component {
       return (
         <Wrapper>
           <MDBContainer>
-            <MDBRow>
-              <MDBCol size="12">
-                <div className="title">Localateur</div>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol>
-                <div className="signin-message center">
-                  Sign in with your Localateur account
-                </div>
-              </MDBCol>
-            </MDBRow>
-            <MDBRow>
-              <MDBCol size="12">
-                <input
-                  type="text"
-                  className="form-control"
-                  id="userName"
-                  placeholder="Username"
-                />
-                <input
-                  type="password"
-                  className="form-control"
-                  id="userPassword"
-                  placeholder="Password"
-                />
-                <div className="center">
-                <MDBBtn className="btn btn-block btn-md btn-signin">
-                  Sign In
-                </MDBBtn>
-                </div>
+            <MDBCard className="signin-card">
+              <MDBCardBody>
+
+                <MDBRow>
+                  <MDBCol>
+                    <div className="signin-title center">Sign In</div>
+                  </MDBCol>
+                </MDBRow>
+
                 
-              </MDBCol>
-            </MDBRow>
 
-            <MDBRow>
-            <MDBCol>
-            <div className="separator-container" >
-            <hr className="separator-half"/>
-            <span className="separator-word">or</span>
-            <hr className="separator-half"/>
-            </div>
-              
-            </MDBCol>
-            </MDBRow>
+                <MDBRow>
+                  <MDBCol size="12">
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="userName"
+                      placeholder="Username"
+                    />
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="userPassword"
+                      placeholder="Password"
+                    />
+                    <div className="center">
+                      <MDBBtn className="btn btn-block btn-md btn-signin" color="danger">
+                        Sign In
+                      </MDBBtn>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
 
-            <MDBRow>
-              <MDBCol size="12">
-                <StyledFirebaseAuth
-                  uiConfig={uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              </MDBCol>
-            </MDBRow>
+                <MDBRow>
+                  <MDBCol>
+                    <div className="separator-container">
+                      <hr className="separator-half" />
+                      <span className="separator-word">or</span>
+                      <hr className="separator-half" />
+                    </div>
+                  </MDBCol>
+                </MDBRow>
 
-            <MDBRow>
-              <MDBCol>
-                <div>
-                  Create your account
-                </div>
-              </MDBCol>
-            </MDBRow>
+                <MDBRow>
+                  <MDBCol size="12">
+                    <StyledFirebaseAuth
+                      uiConfig={uiConfig}
+                      firebaseAuth={firebase.auth()}
+                    />
+                  </MDBCol>
+                </MDBRow>
 
-            
+                <MDBRow>
+                  <MDBCol>
+                    <div className="center signup-text">
+                      <span className="new-to-text">New to Localateur? </span>
+                      <Link to="/signup" className="signup-link">
+                        Sign Up{" "}
+                      </Link>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCardBody>
+            </MDBCard>
           </MDBContainer>
         </Wrapper>
       );
@@ -178,4 +229,3 @@ class LoginPage extends Component {
 }
 
 export { LoginPage };
- 

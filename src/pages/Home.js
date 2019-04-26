@@ -15,6 +15,8 @@ class HomePage extends Component{
 
     componentWillMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+          console.log("loggedin: ", user);
+
           this.setState({
             isSignedIn: !!user
           });

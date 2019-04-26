@@ -45,6 +45,7 @@ class Navbar extends Component {
       <Wrapper>
         <MDBNavbar fixed="top" color="red" dark expand>
             <MDBNavbarNav center="true">
+            
               <MDBNavItem className="mt-1">
                 <Link className="navbar-button button" to="/menu">
                   <MDBIcon icon="bars" size="lg" />
@@ -58,7 +59,7 @@ class Navbar extends Component {
               </MDBNavItem>
 
               <MDBNavItem className="mt-1">
-                <Link className="navbar-button button" to="/profile">
+                <Link className="navbar-button button" to="/login">
                   <MDBIcon icon="user-circle" size="lg" />
                 </Link>
               </MDBNavItem>

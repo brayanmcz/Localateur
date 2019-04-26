@@ -23,7 +23,7 @@ function App() {
       <Router>
         <>
         {
-          //<Navbar />
+          <Navbar />
         }
         <Switch>
           <PageWrapper>
