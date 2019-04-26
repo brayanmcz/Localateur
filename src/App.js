@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+//Component dependencies
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+//Imported Pages
+import { HomePage } from "./pages/Home";
+import { LoginPage } from "./pages/Login";
+
+//Imported Components
+import styled from "styled-components";
+import { Navbar } from "./shared/Navbar";
+
+const AppWrapper = styled.div`
+`;
+
+const PageWrapper = styled.div`
+  margin-top: 46px;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      <Router>
+      <Navbar />
+        <Switch>
+        <PageWrapper>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={LoginPage} />
+        </PageWrapper>
+        </Switch>
+      </Router>
+    </AppWrapper>
   );
 }
 
