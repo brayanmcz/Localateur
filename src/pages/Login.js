@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
 import styled from "styled-components";
-import { MDBContainer, MDBRow, MDBCol} from 'mdbreact';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 const config = {
   apiKey: "AIzaSyCFc_Jl0OBWrQNTYh6kEQkdBbn_i_cAnZU",

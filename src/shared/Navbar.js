@@ -12,6 +12,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   .navbar-button {
     color: white;
+
   }
 
   .navbar-button:visited {
@@ -38,6 +39,14 @@ const Wrapper = styled.div`
   .button:hover {
     cursor: pointer;
   }
+
+  .custom-size-left {
+    font-size: 16px;
+  }
+
+  .custom-size-right {
+    font-size: 18px;
+  }
 `;
 
 class Navbar extends Component {
@@ -48,8 +57,14 @@ class Navbar extends Component {
           <MDBCollapse id="navbarCollapse" navbar>
             <MDBNavbarNav center="true">
               <MDBNavItem className="mt-1">
-                <Link className="navbar-button button" to="/menu">
-                  <MDBIcon icon="bars" size="lg" />
+                <Link className="navbar-button button" to="/map">
+                  <MDBIcon icon="map" className="custom-size-left" />
+                </Link>
+              </MDBNavItem>
+
+              <MDBNavItem className="mt-1">
+                <Link className="navbar-button button" to="/filter">
+                  <MDBIcon icon="filter" className="custom-size-left" />
                 </Link>
               </MDBNavItem>
 
@@ -60,8 +75,14 @@ class Navbar extends Component {
               </MDBNavItem>
 
               <MDBNavItem className="mt-1">
+                <Link className="navbar-button button" to="/notifications">
+                  <MDBIcon icon="bell" className="custom-size-right" />
+                </Link>
+              </MDBNavItem>
+
+              <MDBNavItem className="mt-1">
                 <Link className="navbar-button button" to="/profile">
-                  <MDBIcon icon="user-circle" size="lg" />
+                  <MDBIcon icon="user-circle" className="custom-size-right" />
                 </Link>
               </MDBNavItem>
             </MDBNavbarNav>

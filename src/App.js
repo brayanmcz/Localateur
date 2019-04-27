@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Imported Pages
 import { HomePage } from "./pages/Home";
 import { LoginPage } from "./pages/Login";
+import { MapPage } from "./pages/Map";
 
 //Imported Components
 import styled from "styled-components";
@@ -22,13 +23,16 @@ function App() {
   return (
     <AppWrapper>
       <Router>
-      <Navbar />
+        <>
+        <Navbar />
         <Switch>
-        <PageWrapper>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LoginPage} />
-        </PageWrapper>
+          <PageWrapper>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/map" component={MapPage} />
+          </PageWrapper>
         </Switch>
+        </>
       </Router>
     </AppWrapper>
   );
