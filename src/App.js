@@ -12,8 +12,7 @@ import { MapPage } from "./pages/Map";
 import styled from "styled-components";
 import { Navbar } from "./shared/Navbar";
 
-const AppWrapper = styled.div`
-`;
+const AppWrapper = styled.div``;
 
 const PageWrapper = styled.div`
   margin-top: 46px;
@@ -24,7 +23,9 @@ function App() {
     <AppWrapper>
       <Router>
         <>
-        <Navbar />
+        {
+          <Navbar />
+        }
         <Switch>
           <PageWrapper>
             <Route exact path="/" component={HomePage} />

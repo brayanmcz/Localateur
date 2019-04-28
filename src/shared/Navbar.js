@@ -3,7 +3,6 @@ import {
   MDBNavbar,
   MDBNavbarNav,
   MDBNavItem,
-  MDBCollapse,
   MDBIcon
 } from "mdbreact";
 import { Link } from "react-router-dom";
@@ -54,8 +53,8 @@ class Navbar extends Component {
     return (
       <Wrapper>
         <MDBNavbar fixed="top" color="red" dark expand>
-          <MDBCollapse id="navbarCollapse" navbar>
             <MDBNavbarNav center="true">
+            
               <MDBNavItem className="mt-1">
                 <Link className="navbar-button button" to="/map">
                   <MDBIcon icon="map" className="custom-size-left" />
@@ -86,7 +85,6 @@ class Navbar extends Component {
                 </Link>
               </MDBNavItem>
             </MDBNavbarNav>
-          </MDBCollapse>
         </MDBNavbar>
       </Wrapper>
     );
