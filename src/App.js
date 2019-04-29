@@ -8,6 +8,7 @@ import { HomePage } from "./pages/Home";
 import { SignInPage } from "./pages/SignIn";
 import { SignUpPage } from "./pages/SignUp";
 import { UserProfilePage } from "./pages/UserProfile";
+import { MapPage } from "./pages/Map";
 
 //Imported Components
 import styled from "styled-components";
@@ -33,6 +34,7 @@ function App() {
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/profile/:id" component={UserProfilePage} />
+            <Route exact path="/map" component={MapPage} />
           </PageWrapper>
         </Switch>
         </>

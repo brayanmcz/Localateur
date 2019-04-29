@@ -7,6 +7,7 @@ import firebase from "firebase";
 const Wrapper = styled.div`
   .navbar-button {
     color: white;
+
   }
 
   .navbar-button:visited {
@@ -43,7 +44,15 @@ const Wrapper = styled.div`
     left: 1px;
     top: -2px;
     border: 1px solid white;
-  }
+    }
+    
+    .custom-size-left {
+      font-size: 16px;
+    }
+
+    .custom-size-right {
+      font-size: 18px;
+    }
 `;
 
 class Navbar extends Component {
@@ -72,11 +81,17 @@ class Navbar extends Component {
       <Wrapper>
         <MDBNavbar fixed="top" color="red" dark expand>
           <MDBNavbarNav center="true">
-            <MDBNavItem className="mt-1">
-              <Link className="navbar-button button" to="/menu">
-                <MDBIcon icon="bars" size="lg" />
-              </Link>
-            </MDBNavItem>
+              <MDBNavItem className="mt-1">
+                <Link className="navbar-button button" to="/map">
+                  <MDBIcon icon="map" className="custom-size-left" />
+                </Link>
+              </MDBNavItem>
+
+              <MDBNavItem className="mt-1">
+                <Link className="navbar-button button" to="/filter">
+                  <MDBIcon icon="filter" className="custom-size-left" />
+                </Link>
+              </MDBNavItem>
 
             <MDBNavItem className="">
               <Link className="navbar-button button title" to="/home">
@@ -84,12 +99,19 @@ class Navbar extends Component {
               </Link>
             </MDBNavItem>
 
+            <MDBNavItem className="mt-1">
+                <Link className="navbar-button button" to="/notifications">
+                  <MDBIcon icon="bell" className="custom-size-right" />
+                </Link>
+              </MDBNavItem>
+
             {!isSignedIn ? (
               <MDBNavItem className="mt-1">
                 <Link className="navbar-button button" to="/signin">
                   <MDBIcon icon="user-circle" size="lg" />
-                </Link>
+                  </Link>
               </MDBNavItem>
+
             ) : (
               <MDBNavItem className="mt-1">
                 <Link className="navbar-button button" to={"/profile/" + user.uid}>
