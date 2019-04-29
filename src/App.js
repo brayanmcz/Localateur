@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Imported Pages
 import { HomePage } from "./pages/Home";
-import { LoginPage } from "./pages/Login";
+import { SignInPage } from "./pages/SignIn";
+import { SignUpPage } from "./pages/SignUp";
+import { UserProfilePage } from "./pages/UserProfile";
 
 //Imported Components
 import styled from "styled-components";
@@ -28,7 +30,9 @@ function App() {
         <Switch>
           <PageWrapper>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/signin" component={SignInPage} />
+            <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/profile/:id" component={UserProfilePage} />
           </PageWrapper>
         </Switch>
         </>

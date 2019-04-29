@@ -46,6 +46,7 @@ const Wrapper = styled.div`
     margin: auto;
     margin-top: 15px;
     margin-bottom: 15px;
+    font-size: 12px;
   }
 
   .separator-container {
@@ -124,11 +125,23 @@ const Wrapper = styled.div`
     left: -10px;
     }
   }
+
+  .error-message {
+    margin-top: 15px;
+    margin-bottom: -10px;
+    text-align: center;
+    color: red;
+    font-size: 10px;
+    width: 220px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 `;
 
-class LoginPage extends Component {
+class SignInPage extends Component {
   state = {
-    isSignedIn: false
+    isSignedIn: false,
+    errorMessage: ""
   };
 
   componentDidMount() {
@@ -141,6 +154,22 @@ class LoginPage extends Component {
 
   componentWillUnmount() {
     this.unregisterAuthObserver();
+  }
+
+  signIn = () => {
+    var email = this.refs.email.value;
+    var pass = this.refs.password.value;
+
+    firebase.auth().signInWithEmailAndPassword(email, pass)
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          errorMessage: err.message
+        })
+      })
+      .then(ret=> {
+        console.log(ret);
+      })
   }
 
   render() {
@@ -164,20 +193,23 @@ class LoginPage extends Component {
                     <input
                       type="text"
                       className="form-control"
-                      id="userName"
-                      placeholder="Username"
+                      id="email"
+                      placeholder="Email"
+                      ref="email"
                     />
                     <input
                       type="password"
                       className="form-control"
-                      id="userPassword"
+                      id="password"
                       placeholder="Password"
+                      ref="password"
                     />
                     <div className="center">
-                      <MDBBtn className="btn btn-block btn-md btn-signin" color="danger">
+                      <MDBBtn className="btn btn-block btn-md btn-signin" color="danger" onClick={this.signIn}>
                         Sign In
                       </MDBBtn>
                     </div>
+                    <p className="error-message">{this.state.errorMessage}</p>
                   </MDBCol>
                 </MDBRow>
 
@@ -228,4 +260,4 @@ class LoginPage extends Component {
   }
 }
 
-export { LoginPage };
+export { SignInPage };
