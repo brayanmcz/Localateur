@@ -4,31 +4,36 @@ import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { Map } from "../shared/map/map";
 
 const Wrapper = styled.div`
-    .map-container {
-        width: 100vw;
-        height: calc(${props => props.height});
-        margin-right: px;
-        margin-left: -62px;
-    }
 `;
 
 export class MapPage extends Component {
-    constructor(props) {
-        super(props);
-    }
 
-    static defaultProps = {
-        height: "100vh - 46px"
-    };
+  state = {
+      isListOpen: false
+  }
 
-    render() {
-        return (
-            <Wrapper {...this.props}>
-                <Map
-                    height="100%"
-                    width="100%"
-                />
-            </Wrapper>
-        );
-    };
+  render() {
+    return (
+      <Wrapper>
+        
+        { 
+            this.state.isListOpen ? (
+                <>
+                <Map height="calc(50vh - 46px)" width="100%" />
+                <MDBContainer>
+                <MDBRow>
+                    <MDBCol size="12">
+                    test
+                    </MDBCol>
+                </MDBRow>
+                </MDBContainer>
+                </>
+            ) : (
+                <Map height="calc(100vh - 46px)" width="100%" />
+            )
+        }
+       
+      </Wrapper>
+    );
+  }
 }
