@@ -18,10 +18,23 @@ type Account @class {
 
 type Consumer @class(subClassOf: Account) {
   foodPrefs: [String!]
+
+  visited: [Restaurant!] @relation(name: "RestaurantVisitors")
 }
 
 type Owner @class(subClassOf: Account) {
   isVerified: Boolean!
+
+  restaurants: Restaurant @relation(name: "OwnerRestaurant")
+}
+
+type Hashtag @model {
+  id: ID! @isUnique
+
+  name: String!
+
+  posts: [Post!] @relation(name: "HashtagPosts")
+  review: [Review!] @relation(name: "HashtagReviews")
 }
 
 type Restaurant @model {
@@ -38,15 +51,6 @@ type Restaurant @model {
   location: Location! @relation(name: "RestaurantLocation")
 }
 
-type Hashtag @model {
-  id: ID! @isUnique
-
-  name: String!
-
-  posts: [Post!] @relation(name: "HashtagPosts")
-  review: [Review!] @relation(name: "HashtagReviews")
-}
-
 type Review @model {
   id: ID! @isUnique
   createdAt: DateTime!
@@ -54,7 +58,7 @@ type Review @model {
 }
 
 type Story @model {
-   id: ID! @isUnique
+  id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
 
@@ -67,4 +71,13 @@ type Story @model {
 type Location @model {
   id: ID!
 
+  street: String!
+  street2: String
+  city: String!
+  postalCode: String!
+  state: String
+  country: String!
+  lat: Number!
+  lng: Number!
+  restaurant: Restaurant! @relation(name: "RestaurantLocation")
 }
