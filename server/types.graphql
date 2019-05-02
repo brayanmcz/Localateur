@@ -13,19 +13,52 @@ type Account @model{
   bio: String
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
-  foodPrefs: [String!]
   birthday: String
 
   followers: Consumer @relation(name: "AccountFollowers")
 }
 
-type Consumer @class(subClassOf: Account) {
+type Consumer @model(subClassOf: Account) {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  authID: String!
+  firstName: String!
+  lastName: String!
+  profileImage: String
+  email: String!
+  phone: String
+  langPref: String
+  bio: String
+  gender: String @shape(in: ["male", "female", "other"])
+  ethnicity: String
+  birthday: String
+
   foodPrefs: [String!]
 
-  visited: [Restaurant!] @relation(name: "RestaurantVisitors")
+  following: Account @relation(name: "AccountFollowers")
+  visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
 }
 
-type Owner @class(subClassOf: Account) {
+type Owner @model(subClassOf: Account) {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  authID: String!
+  firstName: String!
+  lastName: String!
+  profileImage: String
+  email: String!
+  phone: String
+  langPref: String
+  bio: String
+  gender: String @shape(in: ["male", "female", "other"])
+  ethnicity: String
+  foodPrefs: [String!]
+  birthday: String
+
   isVerified: Boolean!
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
@@ -36,8 +69,8 @@ type Hashtag @model {
 
   name: String!
 
-  posts: [Post!] @relation(name: "HashtagPosts")
-  review: [Review!] @relation(name: "HashtagReviews")
+  posts: [Post!]! @relation(name: "HashtagPosts")
+  review: [Review!]! @relation(name: "HashtagReviews")
 }
 
 type Restaurant @model {
@@ -46,12 +79,12 @@ type Restaurant @model {
   updatedAt: DateTime!
 
   images: [String!]
-  visits: Number
+  visits: Int!
   amenities: [String!]
   categories: [String!]
 
   owner: Owner! @relation(name: "OwnerRestaurant")
-  visitors: [Consumer!] @relation(name: "RestraurantVisitors")
+  visitors: [Consumer!]! @relation(name: "RestaurantVisitors")
   story: Story! @relation(name: "RestaurantStory")
   location: Location! @relation(name: "RestaurantLocation")
 }
@@ -60,6 +93,8 @@ type Review @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
+
+  hashtag: Hashtag! @relation(name: "HashtagReviews")
 }
 
 type Story @model {
@@ -67,10 +102,10 @@ type Story @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  Title: String!
+  title: String!
 
   restaurant: Restaurant! @relation(name: "RestaurantStory")
-  contents: [Content!] @relation(name: "StoryContent")
+  contents: [Content!]! @relation(name: "StoryContent")
 }
 
 type Location @model {
@@ -82,12 +117,12 @@ type Location @model {
   postalCode: String!
   state: String
   country: String!
-  lat: Number!
-  lng: Number!
+  lat: Float!
+  lng: Float!
   restaurant: Restaurant! @relation(name: "RestaurantLocation")
 }
 
-type Contents @model {
+type Content @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -96,4 +131,12 @@ type Contents @model {
   text: String!
 
   story: Story! @relation(name: "StoryContent")
+}
+
+type Post @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  hashtag: Hashtag! @relation(name: "HashtagPosts")
 }
