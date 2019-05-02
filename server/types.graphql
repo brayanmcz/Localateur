@@ -1,4 +1,4 @@
-type Account @class {
+type Account @model{
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -7,12 +7,12 @@ type Account @class {
   firstName: String!
   lastName: String!
   email: String!
-  picture:
+  # picture:
   langPref: String
   bio: String
-  gender: @shape(in: ["male", "female", "other"])
+  gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
-  foodPrefs: [String]
+  foodPrefs: [String!]
   birthday: String
 }
 

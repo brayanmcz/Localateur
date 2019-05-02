@@ -1,0 +1,3 @@
+targets:
+  LocalateurServer: shared-us-west-2/cjv3dqgjz0syt0164xdkuxkkj
+  default: LocalateurServer
