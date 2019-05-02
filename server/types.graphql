@@ -6,22 +6,94 @@ type Account @model{
   authID: String!
   firstName: String!
   lastName: String!
+  profileImage: String
   email: String!
-  # picture:
+  phone: String
   langPref: String
   bio: String
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
   foodPrefs: [String!]
   birthday: String
+
+  followers: Consumer @relation(name: "AccountFollowers")
 }
 
-# Uncomment the model below as well
+type Consumer @class(subClassOf: Account) {
+  foodPrefs: [String!]
 
-# type Post @model {
-#   id: ID! @isUnique
-#   title: String!
-#
-#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
-#   author: User! @relation(name: "UserPosts")
-# }
+  visited: [Restaurant!] @relation(name: "RestaurantVisitors")
+}
+
+type Owner @class(subClassOf: Account) {
+  isVerified: Boolean!
+
+  restaurants: Restaurant @relation(name: "OwnerRestaurant")
+}
+
+type Hashtag @model {
+  id: ID! @isUnique
+
+  name: String!
+
+  posts: [Post!] @relation(name: "HashtagPosts")
+  review: [Review!] @relation(name: "HashtagReviews")
+}
+
+type Restaurant @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  images: [String!]
+  visits: Number
+  amenities: [String!]
+  categories: [String!]
+
+  owner: Owner! @relation(name: "OwnerRestaurant")
+  visitors: [Consumer!] @relation(name: "RestraurantVisitors")
+  story: Story! @relation(name: "RestaurantStory")
+  location: Location! @relation(name: "RestaurantLocation")
+}
+
+type Review @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Story @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  Title: String!
+
+  restaurant: Restaurant! @relation(name: "RestaurantStory")
+  contents: [Content!] @relation(name: "StoryContent")
+}
+
+type Location @model {
+  id: ID! @isUnique
+
+  street: String!
+  street2: String
+  city: String!
+  postalCode: String!
+  state: String
+  country: String!
+  lat: Number!
+  lng: Number!
+  restaurant: Restaurant! @relation(name: "RestaurantLocation")
+}
+
+type Contents @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  image: String
+  text: String!
+
+  story: Story! @relation(name: "StoryContent")
+}

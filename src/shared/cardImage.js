@@ -32,8 +32,8 @@ const Wrapper = styled.div`
 
     .card-thumb-container{
         position: absolute;
-        top: 0px;
-        right: 15px;
+        top: -12px;
+        right: 5px;
 
         background-color: red;
         color: white;
@@ -44,11 +44,19 @@ const Wrapper = styled.div`
         height: 35px;
 
         padding: 5px;
+
+        border: 2px solid white;
+        border-radius: 5px;
     }
 
     .card-thumb-icon{
         display: inline;
-        color: red;
+        color: white;
+        margin-left: 10px;
+    }
+
+    .thumb-align {
+        display: inline;
     }
 `;
 
@@ -68,7 +76,7 @@ class RestaurantCardImage extends Component{
             <img className="card-image" src={src} alt={alt}/>
             <p className="card-text">{name}</p>
             <div className="card-thumb-container">
-                <p >{thumbs}</p>
+                <p className="thumb-align">{thumbs}</p>
                 <MDBIcon className="card-thumb-icon" icon="thumbs-up" />
             </div>
             </Wrapper>

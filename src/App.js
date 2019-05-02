@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Imported Pages
 import { HomePage } from "./pages/Home";
 import { SignInPage } from "./pages/SignIn";
-import { SignUpPage } from "./pages/SignUp";
+import { SignUpPageWithMutation as SignUpPage } from "./pages/SignUp";
 import { UserProfilePage } from "./pages/UserProfile";
 import { MapPage } from "./pages/Map";
 
@@ -14,11 +14,36 @@ import { MapPage } from "./pages/Map";
 import styled from "styled-components";
 import { Navbar } from "./shared/Navbar";
 
-const AppWrapper = styled.div``;
+//GraphQL Imports
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
+
+const AppWrapper = styled.div`
+`;
 
 const PageWrapper = styled.div`
   margin-top: 46px;
 `;
+
+const GET_RESTAURANTS = gql`
+  query {
+    allRestaurants {
+      id
+      createdAt
+      updatedAt
+      images
+      visits
+      amenities
+      categories
+      owner {
+        id
+        firstName
+        lastName
+      }
+      visitors
+    }
+  }
+`
 
 function App() {
   return (
@@ -43,4 +68,11 @@ function App() {
   );
 }
 
-export default App;
+const AppWithRestaurants = graphql(GET_RESTAURANTS, {
+  name: 'allRestaurantsQuery',
+  options: {
+    fetchPolicy: 'network-only',
+  },
+})(App)
+
+export default AppWithRestaurants;
