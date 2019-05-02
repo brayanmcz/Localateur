@@ -14,6 +14,10 @@ import { MapPage } from "./pages/Map";
 import styled from "styled-components";
 import { Navbar } from "./shared/Navbar";
 
+//GraphQL Imports
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 const AppWrapper = styled.div``;
 
 const PageWrapper = styled.div`
