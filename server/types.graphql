@@ -14,6 +14,8 @@ type Account @class {
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
   birthday: String
+
+  followers: Consumer @relation(name: "AccountFollowers")
 }
 
 type Consumer @class(subClassOf: Account) {
@@ -44,6 +46,8 @@ type Restaurant @model {
 
   images: [String!]
   visits: Number
+  amenities: [String!]
+  categories: [String!]
 
   owner: Owner! @relation(name: "OwnerRestaurant")
   visitors: [Consumer!] @relation(name: "RestraurantVisitors")

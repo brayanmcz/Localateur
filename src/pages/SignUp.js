@@ -12,6 +12,10 @@ import {
 } from "mdbreact";
 import { Link } from "react-router-dom";
 
+//GraphQL Imports
+import { graphql } from "react-apollo"
+import gql from "graphql-tag"
+
 const uiConfig = {
   signInFlow: "popup",
   signInSuccessUrl: "/",
@@ -134,6 +138,14 @@ const Wrapper = styled.div`
 
 `;
 
+const CREATE_CURR_ACCOUNT = gql`
+  mutation createCurrAccount($authID: String!, $first: String!, $last: String!, $email: String!){
+    createAccount(authID: $authID, firstName: $first, lastName: $last, email: $email) {
+      id
+    }
+  }
+`;
+
 class SignUpPage extends Component {
   state = {
     isSignedIn: false,
@@ -179,6 +191,8 @@ class SignUpPage extends Component {
           firebase.auth().currentUser.updateProfile({
             displayName: displayName
           });
+          const user = firebase.auth().currentUser.getToken();
+          this.props.addCurrUserMutation(user, first, last, email);
         }
       });
   };
@@ -289,4 +303,10 @@ class SignUpPage extends Component {
   }
 }
 
-export { SignUpPage };
+const SignUpPageWithMutation = graphql(CREATE_CURR_ACCOUNT, {
+  name: 'createCurrAccountMutation',
+  options: {
+    fetchPolicy: 'network-only',
+  },
+})(SignUpPage)
+export { SignUpPageWithMutation };
