@@ -18,7 +18,8 @@ import { Navbar } from "./shared/Navbar";
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const AppWrapper = styled.div``;
+const AppWrapper = styled.div`
+`;
 
 const PageWrapper = styled.div`
   margin-top: 46px;

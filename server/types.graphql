@@ -42,7 +42,7 @@ type Restaurant @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  images: String
+  images: [String!]
   visits: Number
 
   owner: Owner! @relation(name: "OwnerRestaurant")
@@ -65,11 +65,11 @@ type Story @model {
   Title: String!
 
   restaurant: Restaurant! @relation(name: "RestaurantStory")
-  contents: [Coontent!] @relation(name: "StoryContent")
+  contents: [Content!] @relation(name: "StoryContent")
 }
 
 type Location @model {
-  id: ID!
+  id: ID! @isUnique
 
   street: String!
   street2: String
@@ -80,4 +80,15 @@ type Location @model {
   lat: Number!
   lng: Number!
   restaurant: Restaurant! @relation(name: "RestaurantLocation")
+}
+
+type Contents @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  image: String
+  text: String!
+
+  story: Story! @relation(name: "StoryContent")
 }
