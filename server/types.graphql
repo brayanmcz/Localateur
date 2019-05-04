@@ -1,6 +1,6 @@
 ###         -- ACCOUNT TYPES --         ###
 
-type Account @class {
+type Account @model {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -20,22 +20,22 @@ type Account @class {
   isOwner: Boolean = true
 
   posts: [Post] @relation(name: "AccountPosts")
-  # consumer: Consumer @relation(name: "isConsumer")
-  # owner: Owner @relation(name: "isOwner")
+  consumer: Consumer @relation(name: "isConsumer")
+  owner: Owner @relation(name: "isOwner")
 }
 
-type Consumer @class(subClassOf: Account) {
+type Consumer @model(subClassOf: Account) {
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
-  # account: Account @relation(name: "isConsumer")
+  account: Account @relation(name: "isConsumer")
 }
 
-type Owner @class(subClassOf: Account) {
+type Owner @model(subClassOf: Account) {
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
-  # account: Account @relation(name: "isOwner")
+  account: Account @relation(name: "isOwner")
 }
 
 
