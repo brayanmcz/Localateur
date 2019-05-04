@@ -12,7 +12,7 @@ type Account @class {
   phone: String
   langPref: String
   bio: String
-  gender: String @shape(in: ["male", "female", "other"])
+  gender: String @shape(in: ["male", "female"])
   ethnicity: String
   birthday: String
   following: [String!]
