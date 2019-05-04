@@ -1,11 +1,10 @@
 ###         -- ACCOUNT TYPES --         ###
 
 interface Account {
-  id: ID! @isUnique
+  authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  authID: String!
   firstName: String!
   lastName: String!
   profileImage: String
@@ -23,11 +22,10 @@ interface Account {
 }
 
 type Consumer implements Account {
-  id: ID! @isUnique
+  authID: String!  
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  authID: String!
   firstName: String!
   lastName: String!
   profileImage: String
@@ -49,11 +47,10 @@ type Consumer implements Account {
 }
 
 type Owner implements Account {
-  id: ID! @isUnique
+  authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  authID: String!
   firstName: String!
   lastName: String!
   profileImage: String
