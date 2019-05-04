@@ -21,7 +21,7 @@ interface Account {
   posts: [Post] @relation(name: "AccountPost")
 }
 
-type Consumer implements Account {
+type Consumer implements Account @model {
   authID: String!  
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -46,7 +46,7 @@ type Consumer implements Account {
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
 }
 
-type Owner implements Account {
+type Owner implements Account @model {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
