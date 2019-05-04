@@ -20,6 +20,14 @@ export class List extends Component {
                 info
             </MDBCol>
           </MDBRow>
+          <MDBRow>
+            <MDBCol size="12" sm="5" md="3">
+                <RestaurantCardImage />
+            </MDBCol>
+            <MDBCol size="12" sm="7" md="9">
+                info
+            </MDBCol>
+          </MDBRow>
         </MDBContainer>
       </Wrapper>
     );

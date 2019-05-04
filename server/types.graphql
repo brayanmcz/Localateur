@@ -1,4 +1,6 @@
-type Account @model{
+###         -- ACCOUNT TYPES --         ###
+
+interface Account {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -14,11 +16,11 @@ type Account @model{
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
   birthday: String
-
-  followers: Consumer @relation(name: "AccountFollowers")
+  following: [String!]
+  followers: [String!]
 }
 
-type Consumer @model(subClassOf: Account) {
+type Consumer implements Account {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -34,14 +36,15 @@ type Consumer @model(subClassOf: Account) {
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
   birthday: String
+  following: [String!]
+  followers: [String!]
 
   foodPrefs: [String!]
 
-  following: Account @relation(name: "AccountFollowers")
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
 }
 
-type Owner @model(subClassOf: Account) {
+type Owner @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -58,21 +61,37 @@ type Owner @model(subClassOf: Account) {
   ethnicity: String
   foodPrefs: [String!]
   birthday: String
+  following: [String!]
+  followers: [String!]
 
   isVerified: Boolean!
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
 }
 
+
+###         -- HASHTAGS CONTENTS --         ###
+
 type Hashtag @model {
   id: ID! @isUnique
 
   name: String!
+  numberOfPosts: Int!
 
-  posts: [Post!]! @relation(name: "HashtagPosts")
-  review: [Review!]! @relation(name: "HashtagReviews")
+  posts: [Post] @relation(name: "HashtagPosts")
+  review: [Review] @relation(name: "HashtagReviews")
 }
 
+type Post @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  hashtag: Hashtag! @relation(name: "HashtagPosts")
+}
+
+
+###         -- RESTAURANTS  --          ###
 type Restaurant @model {
   id: ID! @isUnique
   createdAt: DateTime!
@@ -80,21 +99,15 @@ type Restaurant @model {
 
   images: [String!]
   visits: Int!
-  amenities: [String!]
   categories: [String!]
+  thumbs: Int!
 
   owner: Owner! @relation(name: "OwnerRestaurant")
-  visitors: [Consumer!]! @relation(name: "RestaurantVisitors")
+  visitors: [Consumer] @relation(name: "RestaurantVisitors")
   story: Story! @relation(name: "RestaurantStory")
   location: Location! @relation(name: "RestaurantLocation")
-}
-
-type Review @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  hashtag: Hashtag! @relation(name: "HashtagReviews")
+  amenities: [Amenity] @relation(name: "RestaurantAmenities")
+  reviews: [Reviews] @relation(name: "RestaurantReviews")
 }
 
 type Story @model {
@@ -106,6 +119,19 @@ type Story @model {
 
   restaurant: Restaurant! @relation(name: "RestaurantStory")
   contents: [Content!]! @relation(name: "StoryContent")
+}
+
+type Review @model {
+  id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  title: String!
+  text: String!
+  thumbs(thumb: Thumbs!): Boolean! = false
+
+  restaurant: Restaurant! @relation(name: "RestaurantReviews")
+  hashtag: Hashtag! @relation(name: "HashtagReviews")
 }
 
 type Location @model {
@@ -133,10 +159,18 @@ type Content @model {
   story: Story! @relation(name: "StoryContent")
 }
 
-type Post @model {
+type Amenity @model {
   id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
 
-  hashtag: Hashtag! @relation(name: "HashtagPosts")
+  name: String!
+  description: String
+
+  restaurant: Restaurant @relation(name: "RestaurantAmenities")
+}
+
+###         -- ENUMS --         ###
+enum Thumbs {
+  AMBIENCE
+  FOOD
+  SERVICE
 }
