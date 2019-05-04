@@ -60,7 +60,6 @@ type Owner implements Account {
   bio: String
   gender: String @shape(in: ["male", "female", "other"])
   ethnicity: String
-  foodPrefs: [String!]
   birthday: String
   following: [String!]
   followers: [String!]
