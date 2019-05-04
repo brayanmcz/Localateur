@@ -1,90 +1,212 @@
-###         -- ACCOUNT TYPES --         ###
+# ###         -- ACCOUNT TYPES --         ###
 
-type Account @model {
-  authID: ID!
+# type Account @model {
+#   authID: ID!
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   firstName: String!
+#   lastName: String!
+#   profileImage: String
+#   email: String!
+#   phone: String
+#   langPref: String
+#   bio: String
+#   gender: String
+#   ethnicity: String
+#   birthday: String
+#   following: [String!]
+#   followers: [String!]
+#   isOwner: Boolean = true
+
+#   posts: [Post] @relation(name: "AccountPosts")
+#   consumer: Consumer @relation(name: "isConsumer")
+#   owner: Owner @relation(name: "isOwner")
+# }
+
+# type Consumer @model {
+#   authID: ID!
+#   foodPrefs: [String!]
+
+#   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
+#   account: Account @relation(name: "isConsumer")
+# }
+
+# type Owner @model {
+#   authID: ID!
+#   isVerified: Boolean! = false
+
+#   restaurants: Restaurant @relation(name: "OwnerRestaurant")
+#   account: Account @relation(name: "isOwner")
+# }
+
+
+
+# ###         -- HASHTAGS CONTENTS --         ###
+
+# type Hashtag @model {
+#   id: ID! @isUnique
+#   updatedAt: DateTime!
+
+#   name: String!
+#   numberOfPosts: Int! = 0
+
+#   posts: [Post] @relation(name: "HashtagPosts")
+#   review: [Review] @relation(name: "HashtagReviews")
+# }
+
+# type Post @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   hashtag: Hashtag! @relation(name: "HashtagPosts")
+#   content: Content! @relation(name: "PostContent")
+#   account: Account @relation(name: "AccountPosts")
+# }
+
+
+
+# ###         -- RESTAURANTS --          ###
+
+# type Restaurant @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   images: [String!]
+#   visits: Int! = 0
+#   thumbs: Int! = 0
+
+#   owner: Owner! @relation(name: "OwnerRestaurant")
+#   visitors: [Consumer] @relation(name: "RestaurantVisitors")
+#   story: Story! @relation(name: "RestaurantStory")
+#   location: Location! @relation(name: "RestaurantLocation")
+#   amenities: [Amenity] @relation(name: "RestaurantsAmenities")
+#   categories: [Category] @relation(name: "RestaurantsCategories")
+#   reviews: [Reviews] @relation(name: "RestaurantReviews")
+# }
+
+# type Story @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   title: String!
+
+#   contents: [Content!]! @relation(name: "StoryContent")
+#   restaurant: Restaurant! @relation(name: "RestaurantStory")
+# }
+
+# type Review @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   title: String!
+#   text: String!
+#   thumbs(thumb: Thumbs!): Boolean! = false
+
+#   restaurant: Restaurant! @relation(name: "RestaurantReviews")
+#   hashtag: Hashtag! @relation(name: "HashtagReviews")
+# }
+
+# type Location @model {
+#   id: ID! @isUnique
+
+#   street: String!
+#   street2: String
+#   city: String!
+#   postalCode: String!
+#   state: String
+#   country: String! = United States
+#   lat: Float!
+#   lng: Float!
+
+#   restaurant: Restaurant! @relation(name: "RestaurantLocation")
+# }
+
+# type Content @model {
+#   id: ID! @isUnique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+
+#   title: String!
+#   image: String
+#   text: String!
+
+#   story: Story @relation(name: "StoryContent")
+#   post: Post @relation(name: "PostContent")
+# }
+
+# type Category @model {
+#   id: ID! @isUnique
+
+#   name: String!
+
+#   restaurants: [Restaurant] @relation(name: "RestaurantsCategories")
+# }
+
+# type Amenity @model {
+#   id: ID! @isUnique
+
+#   name: String!
+#   description: String
+#   extra: String
+
+#   restaurant: [Restaurant] @relation(name: "RestaurantsAmenities")
+# }
+
+
+
+# ###         -- ENUMS --         ###
+
+# enum Thumbs {
+#   AMBIENCE
+#   FOOD
+#   SERVICE
+# }
+
+type Foodie @model{
+  id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
 
   firstName: String!
   lastName: String!
-  profileImage: String
-  email: String!
+  username: String!
+  authEmail: String!
+  password: String!
   phone: String
-  langPref: String
-  bio: String
-  gender: String
-  ethnicity: String
-  birthday: String
-  following: [String!]
-  followers: [String!]
-  isOwner: Boolean = true
+  profileImage: String
+  isOwner: Boolean! @defaultValue(value: false)
 
-  posts: [Post] @relation(name: "AccountPosts")
-  consumer: Consumer @relation(name: "isConsumer")
-  owner: Owner @relation(name: "isOwner")
+  restaurantID: Restaurant @relation(name: "FoodieRestaurant")
+  reviews: [Review!]! @relation(name: "FoodieReview")
 }
-
-type Consumer @model {
-  authID: ID!
-  foodPrefs: [String!]
-
-  visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
-  account: Account @relation(name: "isConsumer")
-}
-
-type Owner @model {
-  authID: ID!
-  isVerified: Boolean! = false
-
-  restaurants: Restaurant @relation(name: "OwnerRestaurant")
-  account: Account @relation(name: "isOwner")
-}
-
-
-
-###         -- HASHTAGS CONTENTS --         ###
-
-type Hashtag @model {
-  id: ID! @isUnique
-  updatedAt: DateTime!
-
-  name: String!
-  numberOfPosts: Int! = 0
-
-  posts: [Post] @relation(name: "HashtagPosts")
-  review: [Review] @relation(name: "HashtagReviews")
-}
-
-type Post @model {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  hashtag: Hashtag! @relation(name: "HashtagPosts")
-  content: Content! @relation(name: "PostContent")
-  account: Account @relation(name: "AccountPosts")
-}
-
-
-
-###         -- RESTAURANTS --          ###
 
 type Restaurant @model {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  images: [String!]
-  visits: Int! = 0
-  thumbs: Int! = 0
-
-  owner: Owner! @relation(name: "OwnerRestaurant")
-  visitors: [Consumer] @relation(name: "RestaurantVisitors")
-  story: Story! @relation(name: "RestaurantStory")
-  location: Location! @relation(name: "RestaurantLocation")
-  amenities: [Amenity] @relation(name: "RestaurantsAmenities")
-  categories: [Category] @relation(name: "RestaurantsCategories")
-  reviews: [Reviews] @relation(name: "RestaurantReviews")
+  name: String!
+  subName: String
+  categories: [String!]!
+  streetAddress: String!
+  city: String!
+  state: String!
+  zip: String!
+  phone: String!
+  email: String
+  website: String
+  imageUrl: String!
+  amenities: [String!] 
+  
+  foodieID: Foodie @relation(name: "FoodieRestaurant")
+  storyId: Story @relation(name: "RestaurantStory")
+  thumbsUpId: ThumbsUp @relation(name: "RestaurantThumbsUp")
+  amenitiesList: [Amenity!]! @relation(name: "RestaurantAmenities")
 }
 
 type Story @model {
@@ -92,10 +214,33 @@ type Story @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  title: String!
+  description: String! 
+  images: [String!]! 
 
+  restaurantId: Restaurant @relation(name: "RestaurantStory")
   contents: [Content!]! @relation(name: "StoryContent")
-  restaurant: Restaurant! @relation(name: "RestaurantStory")
+}
+
+type Amenity @model {
+  id: ID! @isUnique
+
+  name: String!
+  color: String!
+  extraSymbol: String
+
+  restaurantId: Restaurant @relation(name: "RestaurantAmenities")
+}
+
+type ThumbsUp @model {
+  id: ID! @isUnique
+  updatedAt: DateTime!
+
+  food: Int!
+  service: Int!
+  atmosphere: Int!
+
+  restaurantId: Restaurant @relation(name: "RestaurantThumbsUp")
+  reviewId: Review @relation(name: "ReviewThumbsUp")
 }
 
 type Review @model {
@@ -104,65 +249,19 @@ type Review @model {
   updatedAt: DateTime!
 
   title: String!
-  text: String!
-  thumbs(thumb: Thumbs!): Boolean! = false
+  description: String!
 
-  restaurant: Restaurant! @relation(name: "RestaurantReviews")
-  hashtag: Hashtag! @relation(name: "HashtagReviews")
-}
-
-type Location @model {
-  id: ID! @isUnique
-
-  street: String!
-  street2: String
-  city: String!
-  postalCode: String!
-  state: String
-  country: String! = United States
-  lat: Float!
-  lng: Float!
-
-  restaurant: Restaurant! @relation(name: "RestaurantLocation")
+  foodieId: Foodie @relation(name: "FoodieReview")
+  thumbsUpId: ThumbsUp @relation(name: "ReviewThumbsUp")
 }
 
 type Content @model {
   id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
 
   title: String!
-  image: String
   text: String!
+  position: Int!
+  imageUrl: [String!]!
 
-  story: Story @relation(name: "StoryContent")
-  post: Post @relation(name: "PostContent")
-}
-
-type Category @model {
-  id: ID! @isUnique
-
-  name: String!
-
-  restaurants: [Restaurant] @relation(name: "RestaurantsCategories")
-}
-
-type Amenity @model {
-  id: ID! @isUnique
-
-  name: String!
-  description: String
-  extra: String
-
-  restaurant: [Restaurant] @relation(name: "RestaurantsAmenities")
-}
-
-
-
-###         -- ENUMS --         ###
-
-enum Thumbs {
-  AMBIENCE
-  FOOD
-  SERVICE
+  storyId: Story @relation(name: "StoryContent")
 }
