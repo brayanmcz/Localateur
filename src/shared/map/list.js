@@ -7,7 +7,6 @@ import { RestaurantCardCategory } from '../cardCategory';
 const Wrapper = styled.div`
     height: ${props => props.height};
 
-
     padding-top: 15px;
     overflow-y: scroll;
 
@@ -16,7 +15,6 @@ const Wrapper = styled.div`
       width: 100vw;
       margin-left: -15px;
     }
-
     .list-item{
       height: 100px;
       margin-bottom: 15px;
@@ -25,7 +23,6 @@ const Wrapper = styled.div`
     .list-col{
       height: inherit;
     }
-
 `;
 
 export class List extends Component {

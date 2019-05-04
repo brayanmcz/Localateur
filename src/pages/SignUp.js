@@ -191,8 +191,8 @@ class SignUpPage extends Component {
           firebase.auth().currentUser.updateProfile({
             displayName: displayName
           });
-          const user = firebase.auth().currentUser.getToken();
-          this.props.addCurrUserMutation(user, first, last, email);
+          const user = firebase.auth().currentUser.uid;
+          this.props.createCurrAccountMutation(user, first, last, email);
         }
       });
   };
