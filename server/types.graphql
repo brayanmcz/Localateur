@@ -18,6 +18,8 @@ interface Account {
   birthday: String
   following: [String!]
   followers: [String!]
+
+  posts: [Post] @relation(name: "AccountPost")
 }
 
 type Consumer implements Account {
@@ -39,12 +41,14 @@ type Consumer implements Account {
   following: [String!]
   followers: [String!]
 
+  posts: [Post] @relation(name: "AccountPost")
+
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
 }
 
-type Owner @model {
+type Owner implements Account {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -64,19 +68,23 @@ type Owner @model {
   following: [String!]
   followers: [String!]
 
+  posts: [Post] @relation(name: "AccountPost")
+
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
 }
 
 
+
 ###         -- HASHTAGS CONTENTS --         ###
 
 type Hashtag @model {
   id: ID! @isUnique
+  updatedAt: DateTime!
 
   name: String!
-  numberOfPosts: Int!
+  numberOfPosts: Int! = 0
 
   posts: [Post] @relation(name: "HashtagPosts")
   review: [Review] @relation(name: "HashtagReviews")
@@ -89,7 +97,9 @@ type Post @model {
 
   hashtag: Hashtag! @relation(name: "HashtagPosts")
   content: Content! @relation(name: "PostContent")
+  account: Account! @relation(name: "AccountPost")
 }
+
 
 
 ###         -- RESTAURANTS --          ###
@@ -100,15 +110,15 @@ type Restaurant @model {
   updatedAt: DateTime!
 
   images: [String!]
-  visits: Int!
-  categories: [String!]
-  thumbs: Int!
+  visits: Int! = 0
+  thumbs: Int! = 0
 
   owner: Owner! @relation(name: "OwnerRestaurant")
   visitors: [Consumer] @relation(name: "RestaurantVisitors")
   story: Story! @relation(name: "RestaurantStory")
   location: Location! @relation(name: "RestaurantLocation")
-  amenities: [Amenity] @relation(name: "RestaurantAmenities")
+  amenities: [Amenity] @relation(name: "RestaurantsAmenities")
+  categories: [Category] @relation(name: "RestaurantsCategories")
   reviews: [Reviews] @relation(name: "RestaurantReviews")
 }
 
@@ -119,8 +129,8 @@ type Story @model {
 
   title: String!
 
-  restaurant: Restaurant! @relation(name: "RestaurantStory")
   contents: [Content!]! @relation(name: "StoryContent")
+  restaurant: Restaurant! @relation(name: "RestaurantStory")
 }
 
 type Review @model {
@@ -144,9 +154,10 @@ type Location @model {
   city: String!
   postalCode: String!
   state: String
-  country: String!
+  country: String! = United States
   lat: Float!
   lng: Float!
+
   restaurant: Restaurant! @relation(name: "RestaurantLocation")
 }
 
@@ -155,11 +166,20 @@ type Content @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
+  title: String!
   image: String
   text: String!
 
   story: Story @relation(name: "StoryContent")
   post: Post @relation(name: "PostContent")
+}
+
+type Category @model {
+  id: ID! @isUnique
+
+  name: String!
+
+  restaurants: [Restaurant] @relation(name: "RestaurantsCategories")
 }
 
 type Amenity @model {
@@ -169,8 +189,9 @@ type Amenity @model {
   description: String
   extra: String
 
-  restaurant: Restaurant! @relation(name: "RestaurantAmenities")
+  restaurant: [Restaurant] @relation(name: "RestaurantsAmenities")
 }
+
 
 
 ###         -- ENUMS --         ###
