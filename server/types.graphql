@@ -1,6 +1,6 @@
 ###         -- ACCOUNT TYPES --         ###
 
-interface Account @model {
+type Account @class {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -17,54 +17,25 @@ interface Account @model {
   birthday: String
   following: [String!]
   followers: [String!]
+  isOwner: Boolean = true
+
+  posts: [Post] @relation(name: "AccountPosts")
+  # consumer: Consumer @relation(name: "isConsumer")
+  # owner: Owner @relation(name: "isOwner")
 }
 
-type Consumer implements Account @model {
-  authID: String!  
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  firstName: String!
-  lastName: String!
-  profileImage: String
-  email: String!
-  phone: String
-  langPref: String
-  bio: String
-  gender: String @shape(in: ["male", "female", "other"])
-  ethnicity: String
-  birthday: String
-  following: [String!]
-  followers: [String!]
-
+type Consumer @class(subClassOf: Account) {
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
-  posts: [Post] @relation(name: "ConsumerPost")
+  # account: Account @relation(name: "isConsumer")
 }
 
-type Owner implements Account @model {
-  authID: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-
-  firstName: String!
-  lastName: String!
-  profileImage: String
-  email: String!
-  phone: String
-  langPref: String
-  bio: String
-  gender: String @shape(in: ["male", "female", "other"])
-  ethnicity: String
-  birthday: String
-  following: [String!]
-  followers: [String!]
-
+type Owner @class(subClassOf: Account) {
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
-  posts: [Post] @relation(name: "OwnerPost")
+  # account: Account @relation(name: "isOwner")
 }
 
 
@@ -89,8 +60,7 @@ type Post @model {
 
   hashtag: Hashtag! @relation(name: "HashtagPosts")
   content: Content! @relation(name: "PostContent")
-  consumer: Comsumer @relation(name: "ConsumerPost")
-  owner: Owner @relation(name: "OwnerPost")
+  account: Account @relation(name: "AccountPosts")
 }
 
 
