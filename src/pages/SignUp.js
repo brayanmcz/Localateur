@@ -28,7 +28,7 @@ const uiConfig = {
 const Wrapper = styled.div`
   padding-top: 35px;
   background-color: #efefef;
-  /* height: calc(100vh - 46px); */
+  min-height: calc(100vh - 46px);
   padding-bottom: 35px;
 
   .title {

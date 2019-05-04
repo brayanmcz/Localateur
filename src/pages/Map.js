@@ -4,9 +4,11 @@ import { Map } from "../shared/map/map";
 import { List } from "../shared/map/list";
 
 const Wrapper = styled.div`
-  .map-container {
-    height: 100vh;
-    width: 100%;
+  min-height: calc(100vh - 46px);
+  position: fixed;
+
+  .map{
+    box-shadow: 5px 0px 5px 5px #eeeeee;
   }
 `;
 
@@ -18,14 +20,14 @@ export class MapPage extends Component {
   render() {
     return (
       <Wrapper>
-        {this.state.isListOpen ? (
+        {this.state.isListOpen === true ? 
           <>
-            <Map height="calc(50vh - 46px)" width="100%" />
-            <List />
+            <Map className="map" height="calc(50vh - 23px)" width="100vw" />
+            <List height="calc(50vh - 23px)" />
           </>
-        ) : (
-          <Map height="calc(100vh - 46px)" width="100%" />
-        )}
+         : 
+          <Map height="calc(100vh - 46px)"  width="100vw"/>
+        } 
       </Wrapper>
     );
   }

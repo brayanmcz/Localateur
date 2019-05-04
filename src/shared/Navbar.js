@@ -67,7 +67,6 @@ class Navbar extends Component {
         isSignedIn: !!user,
         user: user
       });
-      console.log("user: ", user.photoURL);
     });
   }
 
