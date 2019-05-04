@@ -1,6 +1,6 @@
 ###         -- ACCOUNT TYPES --         ###
 
-interface Account {
+interface Account @model {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -17,8 +17,6 @@ interface Account {
   birthday: String
   following: [String!]
   followers: [String!]
-
-  posts: [Post] @relation(name: "AccountPost")
 }
 
 type Consumer implements Account @model {
@@ -39,11 +37,10 @@ type Consumer implements Account @model {
   following: [String!]
   followers: [String!]
 
-  posts: [Post] @relation(name: "AccountPost")
-
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
+  posts: [Post] @relation(name: "ConsumerPost")
 }
 
 type Owner implements Account @model {
@@ -64,11 +61,10 @@ type Owner implements Account @model {
   following: [String!]
   followers: [String!]
 
-  posts: [Post] @relation(name: "AccountPost")
-
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
+  posts: [Post] @relation(name: "OwnerPost")
 }
 
 
@@ -93,7 +89,8 @@ type Post @model {
 
   hashtag: Hashtag! @relation(name: "HashtagPosts")
   content: Content! @relation(name: "PostContent")
-  account: Account! @relation(name: "AccountPost")
+  consumer: Comsumer @relation(name: "ConsumerPost")
+  owner: Owner @relation(name: "OwnerPost")
 }
 
 
