@@ -1,6 +1,6 @@
 ###         -- ACCOUNT TYPES --         ###
 
-type Account @model {
+type Account {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -42,7 +42,7 @@ type Owner @model(subClassOf: Account) {
 
 ###         -- HASHTAGS CONTENTS --         ###
 
-type Hashtag @model {
+type Hashtag {
   id: ID! @isUnique
   updatedAt: DateTime!
 
@@ -53,7 +53,7 @@ type Hashtag @model {
   review: [Review] @relation(name: "HashtagReviews")
 }
 
-type Post @model {
+type Post {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -67,7 +67,7 @@ type Post @model {
 
 ###         -- RESTAURANTS --          ###
 
-type Restaurant @model {
+type Restaurant {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -85,7 +85,7 @@ type Restaurant @model {
   reviews: [Reviews] @relation(name: "RestaurantReviews")
 }
 
-type Story @model {
+type Story {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -96,7 +96,7 @@ type Story @model {
   restaurant: Restaurant! @relation(name: "RestaurantStory")
 }
 
-type Review @model {
+type Review {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -109,7 +109,7 @@ type Review @model {
   hashtag: Hashtag! @relation(name: "HashtagReviews")
 }
 
-type Location @model {
+type Location {
   id: ID! @isUnique
 
   street: String!
@@ -124,7 +124,7 @@ type Location @model {
   restaurant: Restaurant! @relation(name: "RestaurantLocation")
 }
 
-type Content @model {
+type Content {
   id: ID! @isUnique
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -137,7 +137,7 @@ type Content @model {
   post: Post @relation(name: "PostContent")
 }
 
-type Category @model {
+type Category {
   id: ID! @isUnique
 
   name: String!
@@ -145,7 +145,7 @@ type Category @model {
   restaurants: [Restaurant] @relation(name: "RestaurantsCategories")
 }
 
-type Amenity @model {
+type Amenity {
   id: ID! @isUnique
 
   name: String!
