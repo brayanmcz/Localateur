@@ -25,7 +25,8 @@ type Account @model {
 }
 
 type Consumer @model {
-  id: ID!
+  id: ID! @isUnique
+  
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
@@ -33,7 +34,8 @@ type Consumer @model {
 }
 
 type Owner @model {
-  id: ID!
+  id: ID! @isUnique
+
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
