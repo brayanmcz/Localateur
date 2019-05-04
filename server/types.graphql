@@ -64,7 +64,7 @@ type Owner @model {
   following: [String!]
   followers: [String!]
 
-  isVerified: Boolean!
+  isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
 }
@@ -88,10 +88,12 @@ type Post @model {
   updatedAt: DateTime!
 
   hashtag: Hashtag! @relation(name: "HashtagPosts")
+  content: Content! @relation(name: "PostContent")
 }
 
 
-###         -- RESTAURANTS  --          ###
+###         -- RESTAURANTS --          ###
+
 type Restaurant @model {
   id: ID! @isUnique
   createdAt: DateTime!
@@ -156,7 +158,8 @@ type Content @model {
   image: String
   text: String!
 
-  story: Story! @relation(name: "StoryContent")
+  story: Story @relation(name: "StoryContent")
+  post: Post @relation(name: "PostContent")
 }
 
 type Amenity @model {
@@ -164,11 +167,14 @@ type Amenity @model {
 
   name: String!
   description: String
+  extra: String
 
-  restaurant: Restaurant @relation(name: "RestaurantAmenities")
+  restaurant: Restaurant! @relation(name: "RestaurantAmenities")
 }
 
+
 ###         -- ENUMS --         ###
+
 enum Thumbs {
   AMBIENCE
   FOOD
