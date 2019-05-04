@@ -1,6 +1,6 @@
 ###         -- ACCOUNT TYPES --         ###
 
-type Account @model {
+type Abccount @model {
   authID: String!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -28,14 +28,14 @@ type Consumer @model {
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
-  account: Account @relation(name: "isConsumer")
+  account: Abccount @relation(name: "isConsumer")
 }
 
 type Owner @model {
   isVerified: Boolean! = false
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
-  account: Account @relation(name: "isOwner")
+  account: Abccount @relation(name: "isOwner")
 }
 
 
@@ -60,7 +60,7 @@ type Post @model {
 
   hashtag: Hashtag! @relation(name: "HashtagPosts")
   content: Content! @relation(name: "PostContent")
-  account: Account @relation(name: "AccountPosts")
+  account: Abccount @relation(name: "AccountPosts")
 }
 
 
