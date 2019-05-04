@@ -1,7 +1,7 @@
 ###         -- ACCOUNT TYPES --         ###
 
 type Account @model{
-  id: ID! @isUnique
+  authID: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
 
@@ -33,7 +33,7 @@ type Consumer @model {
 type Owner @model {
   authID: ID!
 
-  isVerified: Boolean! = false
+  isVerified: Boolean! @defaultValue(value: false)
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
   account: Account @relation(name: "isOwner")
@@ -48,7 +48,7 @@ type Hashtag @model {
   updatedAt: DateTime!
 
   name: String!
-  numberOfPosts: Int! = 0
+  numberOfPosts: Int! @defaultValue(value: 0)
 
   posts: [Post] @relation(name: "HashtagPosts")
   review: [Review] @relation(name: "HashtagReviews")
@@ -74,8 +74,8 @@ type Restaurant @model {
   updatedAt: DateTime!
 
   images: [String!]
-  visits: Int! = 0
-  thumbs: Int! = 0
+  visits: Int! @defaultValue(value: 0)
+  thumbs: Int! @defaultValue(value: 0)
 
   owner: Owner! @relation(name: "OwnerRestaurant")
   visitors: [Consumer] @relation(name: "RestaurantVisitors")
@@ -104,7 +104,7 @@ type Review @model {
 
   title: String!
   text: String!
-  thumbs(thumb: Thumbs!): Boolean! = false
+  thumbs(thumb: Thumbs!): Boolean! @defaultValue(value: false)
 
   restaurant: Restaurant! @relation(name: "RestaurantReviews")
   hashtag: Hashtag! @relation(name: "HashtagReviews")
@@ -118,7 +118,7 @@ type Location @model {
   city: String!
   postalCode: String!
   state: String
-  country: String! = United States
+  country: String! @defaultValue(value: United States)
   lat: Float!
   lng: Float!
 
