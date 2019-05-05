@@ -19,10 +19,23 @@ const Wrapper = styled.div`
 `;
 
 class RestaurantCardAmenity extends Component{
+  state = {
+    icon: "",
+    plus: false
+  }
+
+  componentDidMount() {
+    //Add switch case with icons
+    console.log("kjash: ",this.props.amenity.toLower());
+    // switch (this.props.amenity.toLower()){
+    //   case: 
+    // }
+  }
+
   render(){
     return(
       <Wrapper className="green">
-        <MDBIcon className="amenity-icon" icon="leaf" size="xs"/>
+        <MDBIcon className="amenity-icon" icon="leaf" size="xs">{}</MDBIcon>
       </Wrapper>
     );
   }
