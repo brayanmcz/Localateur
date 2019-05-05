@@ -7,6 +7,8 @@ const Wrapper = styled.div`
     width: 100%;
     background-color: lightgrey;
     border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
 
     .card-image{
         height: 100px;
@@ -69,10 +71,6 @@ const Wrapper = styled.div`
 
     .thumb-align {
         display: inline;
-    }
-
-    .horizonal-rule{
-        width: 100%;
     }
 `;
 

@@ -6,7 +6,9 @@ const Wrapper = styled.div`
   display: inline-block;
   height: 20px;
   border-radius: 3px;
-
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
 
   .category-text{
     padding: 2px 5px 2px 5px;
@@ -21,13 +23,13 @@ const Wrapper = styled.div`
 class RestaurantCardCategory extends Component {
 
   static defaultProps = {
-    text: "test"
+    category: "test"
   }
 
   render() { 
     return (
       <Wrapper>
-        <p className="category-text">{this.props.text}</p>
+        <p className="category-text">{this.props.category}</p>
       </Wrapper>
     );
   }
