@@ -9,6 +9,7 @@ type Account @model{
   firstName: String!
   lastName: String!
   profileImage: String
+  email: String!
   phone: String
   langPref: String
   bio: String
@@ -77,6 +78,7 @@ type Restaurant @model {
   images: [String!]
   visits: Int! @defaultValue(value: 0)
   thumbs: Int! @defaultValue(value: 0)
+  hours(day: Days!): DateTime!
 
   owner: Owner! @relation(name: "OwnerRestaurant")
   visitors: [Consumer!]! @relation(name: "RestaurantVisitors")
@@ -106,6 +108,7 @@ type Review @model {
   title: String!
   text: String!
   thumbs(thumb: Thumbs!): Boolean! @defaultValue(value: false)
+
 
   restaurant: Restaurant! @relation(name: "RestaurantReviews")
   hashtag: Hashtag! @relation(name: "HashtagReviews")
@@ -165,4 +168,14 @@ enum Thumbs {
   AMBIENCE
   FOOD
   SERVICE
+}
+
+enum Days {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
 }

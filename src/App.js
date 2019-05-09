@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 
 //Component dependencies
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -43,29 +43,40 @@ const GET_RESTAURANTS = gql`
       visitors
     }
   }
-`
+`;
 
-function App() {
-  return (
-    <AppWrapper>
-      <Router>
-        <>
-        {
-          <Navbar />
-        }
-        <Switch>
-          <PageWrapper>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/signin" component={SignInPage} />
-            <Route exact path="/signup" component={SignUpPage} />
-            <Route exact path="/profile/:id" component={UserProfilePage} />
-            <Route exact path="/map" component={MapPage} />
-          </PageWrapper>
-        </Switch>
-        </>
-      </Router>
-    </AppWrapper>
-  );
+class App extends Component {
+  componentDidMount() {
+    this.props.allRestaurantsQuery.refetch()
+      .then((ret) => {
+        this.setState({
+          allRestaurants: ret.data.allRestaurants
+        });
+      });
+  };
+
+  render() {
+    return (
+      <AppWrapper>
+        <Router>
+          <>
+            {
+              <Navbar />
+            }
+            <Switch>
+              <PageWrapper>
+                <Route exact path="/" component={HomePage} />
+                <Route exact path="/signin" component={SignInPage} />
+                <Route exact path="/signup" component={SignUpPage} />
+                <Route exact path="/profile/:id" component={UserProfilePage} />
+                <Route exact path="/map" component={MapPage} />
+              </PageWrapper>
+            </Switch>
+          </>
+        </Router>
+      </AppWrapper>
+    );
+  }
 }
 
 const AppWithRestaurants = graphql(GET_RESTAURANTS, {
