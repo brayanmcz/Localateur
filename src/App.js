@@ -50,9 +50,7 @@ function App() {
     <AppWrapper>
       <Router>
         <>
-        {
-          <Navbar />
-        }
+        <Navbar />
         <Switch>
           <PageWrapper>
             <Route exact path="/" component={HomePage} />

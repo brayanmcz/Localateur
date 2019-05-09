@@ -10,6 +10,8 @@ const Wrapper = styled.div`
     margin-top: 5px;
     margin-bottom: 15px;
 
+    cursor: pointer;
+
     .card-image{
         height: 100px;
         width: 100%;
