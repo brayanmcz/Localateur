@@ -134,8 +134,6 @@ const Wrapper = styled.div`
     margin-left: 15px;
     margin-right: 15px;
   }
-
-
 `;
 
 const CREATE_CURR_ACCOUNT = gql`

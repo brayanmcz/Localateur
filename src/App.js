@@ -55,28 +55,25 @@ class App extends Component {
       });
   };
 
-  render() {
-    return (
-      <AppWrapper>
-        <Router>
-          <>
-            {
-              <Navbar />
-            }
-            <Switch>
-              <PageWrapper>
-                <Route exact path="/" component={HomePage} />
-                <Route exact path="/signin" component={SignInPage} />
-                <Route exact path="/signup" component={SignUpPage} />
-                <Route exact path="/profile/:id" component={UserProfilePage} />
-                <Route exact path="/map" component={MapPage} />
-              </PageWrapper>
-            </Switch>
-          </>
-        </Router>
-      </AppWrapper>
-    );
-  }
+function App() {
+  return (
+    <AppWrapper>
+      <Router>
+        <>
+        <Navbar />
+        <Switch>
+          <PageWrapper>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/signin" component={SignInPage} />
+            <Route exact path="/signup" component={SignUpPage} />
+            <Route exact path="/profile/:id" component={UserProfilePage} />
+            <Route exact path="/map" component={MapPage} />
+          </PageWrapper>
+        </Switch>
+        </>
+      </Router>
+    </AppWrapper>
+  );
 }
 
 const AppWithRestaurants = graphql(GET_RESTAURANTS, {

@@ -1,0 +1,3 @@
+targets:
+  LocalateurV2: shared-us-west-2/cjvdbnqpz2l0a0105jcdhm82o
+  default: LocalateurV2

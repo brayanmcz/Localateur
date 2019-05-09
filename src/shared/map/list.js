@@ -9,26 +9,22 @@ const Wrapper = styled.div`
     height: ${props => props.height};
 
     padding-top: 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: none;
     width: calc(100% - 15px);
 
-    .rule{
-      color: black;
-      width: 100vw;
-      margin-left: -15px;
+    .list-item{
+      margin-bottom: 15px;
     }
 
-    .list-item{
-      /* height: 110px; */
-      margin-bottom: 15px;
+    .list-item:hover{
+      cursor: pointer;
+      background-color: #efefefef;
+      transition: background-color .5s;
     }
 
     .list-col{
       height: 110px;
-    }
-
-    .category-container{
-      overflow: scroll;
     }
 
     .list-miles{
@@ -57,9 +53,9 @@ export class List extends Component {
                       <MDBRow>
                         <MDBCol>
                         {
-                        item.category.map((category) => {
+                        item.category.map((category, index) => {
                           return (
-                          <RestaurantCardCategory category={category} />
+                          <RestaurantCardCategory category={category} key={index} />
                           )
                         })
                       }
@@ -68,9 +64,9 @@ export class List extends Component {
                       <MDBRow>
                         <MDBCol size="9">
                         {
-                          item.amenity.map((amenity) => {
+                          item.amenity.map((amenity, index) => {
                             return (
-                            <RestaurantCardAmenity amenity={amenity} />
+                            <RestaurantCardAmenity amenity={amenity} key={index}/>
                             )
                           })
                         }
@@ -82,7 +78,7 @@ export class List extends Component {
                     </MDBCol>
                   </MDBRow>
                   {
-                    index === data.length - 1 ? <></> : <hr className="rule" />
+                    index === data.length - 1 ? <></> : <hr />
                   }
                 </div>
               )
@@ -102,15 +98,38 @@ const data = [
     thumbs: "3.7k",
     id: "123456789",
     category: ["Vietnamese", "Sandwiches", "Soup"],
-    amenity: ["Vegan", "Wifi", "Keto", "", ""]
-  },
-  {
+    amenity: ["Vegan", "Wifi", "Keto", "Vegetarian", "Hiring"]
+  },{
     src: "https://scontent-sjc3-1.cdninstagram.com/vp/bd3362479564159b3c8fb7f19ad2a250/5D75B281/t51.2885-15/e35/46215708_512422272558948_4800932770094252032_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com",
     alt: "Main Image",
     name: "Bánh Mì by Rice and Spoon",
     thumbs: "3.7k",
     id: "123456789",
     category: ["Vietnamese", "Sandwiches", "Soup"],
-    amenity: ["Vegan", "Wifi", "Keto", "", ""]
+    amenity: ["Vegan", "Wifi", "Keto"]
+  },{
+    src: "https://scontent-sjc3-1.cdninstagram.com/vp/bd3362479564159b3c8fb7f19ad2a250/5D75B281/t51.2885-15/e35/46215708_512422272558948_4800932770094252032_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com",
+    alt: "Main Image",
+    name: "Bánh Mì by Rice and Spoon",
+    thumbs: "3.7k",
+    id: "123456789",
+    category: ["Vietnamese", "Sandwiches", "Soup"],
+    amenity: ["Vegan", "Wifi", "Keto"]
+  },{
+    src: "https://scontent-sjc3-1.cdninstagram.com/vp/bd3362479564159b3c8fb7f19ad2a250/5D75B281/t51.2885-15/e35/46215708_512422272558948_4800932770094252032_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com",
+    alt: "Main Image",
+    name: "Bánh Mì by Rice and Spoon",
+    thumbs: "3.7k",
+    id: "123456789",
+    category: ["Vietnamese", "Sandwiches", "Soup"],
+    amenity: ["Vegan", "Wifi", "Keto"]
+  },{
+    src: "https://scontent-sjc3-1.cdninstagram.com/vp/bd3362479564159b3c8fb7f19ad2a250/5D75B281/t51.2885-15/e35/46215708_512422272558948_4800932770094252032_n.jpg?_nc_ht=scontent-sjc3-1.cdninstagram.com",
+    alt: "Main Image",
+    name: "Bánh Mì by Rice and Spoon",
+    thumbs: "3.7k",
+    id: "123456789",
+    category: ["Vietnamese", "Sandwiches", "Soup"],
+    amenity: ["Vegan", "Wifi", "Keto"]
   },
 ]
