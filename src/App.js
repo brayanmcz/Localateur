@@ -33,14 +33,27 @@ const GET_RESTAURANTS = gql`
       updatedAt
       images
       visits
-      amenities
-      categories
+      amenities {
+        name
+        description
+      }
+      categories {
+        name
+      }
       owner {
         id
-        firstName
-        lastName
+        account {
+          firstName
+          lastName
+        }
       }
-      visitors
+      visits
+      visitors {
+        account {
+          firstName
+          lastName
+        }
+      }
     }
   }
 `;
@@ -52,6 +65,7 @@ class App extends Component {
         this.setState({
           allRestaurants: ret.data.allRestaurants
         });
+        console.log(this.state.allRestaurants);
       });
   };
 

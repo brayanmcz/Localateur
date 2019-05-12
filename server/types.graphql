@@ -19,8 +19,8 @@ type Account @model{
   isOwner: Boolean! @defaultValue(value: false)
 
   posts: [Post!]! @relation(name: "AccountPosts")
-  consumer: Consumer @relation(name: "isConsumer")
-  owner: Owner @relation(name: "isOwner")
+  consumer: Consumer @relation(name: "AccountConsumer")
+  owner: Owner @relation(name: "AccountOwner")
 }
 
 type Consumer @model {
@@ -29,7 +29,7 @@ type Consumer @model {
   foodPrefs: [String!]
 
   visited: [Restaurant!]! @relation(name: "RestaurantVisitors")
-  account: Account @relation(name: "isConsumer")
+  account: Account @relation(name: "AccountConsumer")
 }
 
 type Owner @model {
@@ -38,7 +38,7 @@ type Owner @model {
   isVerified: Boolean! @defaultValue(value: false)
 
   restaurants: Restaurant @relation(name: "OwnerRestaurant")
-  account: Account @relation(name: "isOwner")
+  account: Account @relation(name: "AccountOwner")
 }
 
 
@@ -78,7 +78,6 @@ type Restaurant @model {
   images: [String!]
   visits: Int! @defaultValue(value: 0)
   thumbs: Int! @defaultValue(value: 0)
-  hours(day: Days!): DateTime!
 
   owner: Owner! @relation(name: "OwnerRestaurant")
   visitors: [Consumer!]! @relation(name: "RestaurantVisitors")
@@ -108,7 +107,6 @@ type Review @model {
   title: String!
   text: String!
   thumbs(thumb: Thumbs!): Boolean! @defaultValue(value: false)
-
 
   restaurant: Restaurant! @relation(name: "RestaurantReviews")
   hashtag: Hashtag! @relation(name: "HashtagReviews")
@@ -168,14 +166,4 @@ enum Thumbs {
   AMBIENCE
   FOOD
   SERVICE
-}
-
-enum Days {
-  MONDAY
-  TUESDAY
-  WEDNESDAY
-  THURSDAY
-  FRIDAY
-  SATURDAY
-  SUNDAY
 }
