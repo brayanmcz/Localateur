@@ -33,6 +33,10 @@ const Wrapper = styled.div`
       float: right;
       margin-top: 12px;
     }
+
+    .height3{
+      height: 30px;
+    }
 `;
 
 export class List extends Component {
@@ -61,8 +65,8 @@ export class List extends Component {
                       }
                         </MDBCol>
                       </MDBRow>
-                      <MDBRow>
-                        <MDBCol size="9">
+                      <MDBRow className="height3">
+                        <MDBCol size="9" className="height3">
                         {
                           item.amenity.map((amenity, index) => {
                             return (
@@ -71,7 +75,7 @@ export class List extends Component {
                           })
                         }
                         </MDBCol>
-                        <MDBCol size="3">
+                        <MDBCol size="3" className="height3">
                           <p className="list-miles">{0.5} miles</p>
                         </MDBCol>
                       </MDBRow>

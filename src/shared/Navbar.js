@@ -7,7 +7,6 @@ import firebase from "firebase";
 const Wrapper = styled.div`
   .navbar-button {
     color: white;
-
   }
 
   .navbar-button:visited {
@@ -63,6 +62,7 @@ class Navbar extends Component {
 
   componentDidMount() {
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+      console.log(user);
       this.setState({
         isSignedIn: !!user,
         user: user

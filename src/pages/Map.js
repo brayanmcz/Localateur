@@ -10,6 +10,10 @@ const Wrapper = styled.div`
   .map{
     box-shadow: 5px 0px 5px 5px #eeeeee;
   }
+
+  .list{
+    width: 100%
+  }
 `;
 
 export class MapPage extends Component {
@@ -22,8 +26,8 @@ export class MapPage extends Component {
       <Wrapper>
         {this.state.isListOpen === true ? 
           <>
-            <Map className="map" height="calc(50vh - 23px)" width="100vw" />
-            <List height="calc(50vh - 23px)" />
+            <Map height="calc(50vh - 46px)"  width="100vw"/>
+            <List className="list" height="calc(50vh)" />
           </>
          : 
           <Map height="calc(100vh - 46px)"  width="100vw"/>
