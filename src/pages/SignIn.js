@@ -186,8 +186,6 @@ class SignInPage extends Component {
                   </MDBCol>
                 </MDBRow>
 
-                
-
                 <MDBRow>
                   <MDBCol size="12">
                     <input
