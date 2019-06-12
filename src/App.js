@@ -9,6 +9,7 @@ import { SignInPage } from "./pages/SignIn";
 import { SignUpPageWithMutation as SignUpPage } from "./pages/SignUp";
 import { UserProfilePage } from "./pages/UserProfile";
 import { MapPage } from "./pages/Map";
+import { BusinessSetupPage } from "./pages/BusinessSetup"; 
 
 //Imported Components
 import styled from "styled-components";
@@ -82,6 +83,7 @@ class App extends Component {
                 <Route exact path="/signup" component={SignUpPage} />
                 <Route exact path="/profile/:id" component={UserProfilePage} />
                 <Route exact path="/map" component={MapPage} />
+                <Route exact path="/businesssetup" component={BusinessSetupPage} />
               </PageWrapper>
             </Switch>
           </>

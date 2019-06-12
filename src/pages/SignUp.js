@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
+import { Redirect } from 'react-router-dom';
 import styled from "styled-components";
 import {
   MDBContainer,
@@ -196,7 +197,11 @@ class SignUpPage extends Component {
   };
 
   render() {
-    if (!this.state.isSignedIn) {
+    if (this.state.isSignedIn) {
+      return (
+        <Redirect to="/profile/123"/>
+      );
+    } else {
       return (
         <Wrapper>
           <MDBContainer>

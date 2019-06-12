@@ -80,7 +80,7 @@ class UserProfilePage extends Component {
             <MDBCol>
               <MDBCard>
                 <MDBCardHeader className="avatar-header" color="red">
-                <div class="avatar-container">
+                <div className="avatar-container">
                   <img
                     className="user-avatar"
                     src="https://lh5.googleusercontent.com/-o25W57-3VpU/AAAAAAAAAAI/AAAAAAAAD34/PVm1zwCabLk/photo.jpg"
