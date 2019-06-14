@@ -89,7 +89,6 @@ class App extends Component {
       this.setState({
         allRestaurants: ret.data.allRestaurants
       });
-      console.log("All Restaurants: ", this.state.allRestaurants);
     });
   }
 
