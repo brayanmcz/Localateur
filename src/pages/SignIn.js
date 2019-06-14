@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
+import { Redirect } from 'react-router-dom';
 import styled from "styled-components";
 import {
   MDBContainer,
@@ -21,7 +22,6 @@ firebase.initializeApp(config);
 
 const uiConfig = {
   signInFlow: "popup",
-  signInSuccessUrl: "/",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -141,12 +141,15 @@ const Wrapper = styled.div`
 class SignInPage extends Component {
   state = {
     isSignedIn: false,
-    errorMessage: ""
+    errorMessage: "",
+    user: null
   };
 
   componentDidMount() {
+    console.log("componentDidMount", this.state.isSignedIn);
     this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
       this.setState({
+        user: user,
         isSignedIn: !!user
       });
     });
@@ -173,7 +176,11 @@ class SignInPage extends Component {
   }
 
   render() {
-    if (!this.state.isSignedIn) {
+    if (this.state.isSignedIn)   {
+      return (
+        <Redirect to="/profile/123"/>
+      );
+    } else {
       return (
         <Wrapper>
           <MDBContainer>
@@ -246,15 +253,6 @@ class SignInPage extends Component {
         </Wrapper>
       );
     }
-    return (
-      <Wrapper>
-        <p>
-          Welcome {firebase.auth().currentUser.displayName}! You are now
-          signed-in!
-        </p>
-        <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
-      </Wrapper>
-    );
   }
 }
 

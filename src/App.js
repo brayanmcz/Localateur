@@ -10,6 +10,7 @@ import { SignUpPageWithMutation as SignUpPage } from "./pages/SignUp";
 import { UserProfilePage } from "./pages/UserProfile";
 import { MapPage } from "./pages/Map";
 import { SetupAccountPage } from "./pages/SetupAccount";
+import { BusinessSetupPage } from "./pages/BusinessSetup"; 
 
 //Imported Components
 import styled from "styled-components";
