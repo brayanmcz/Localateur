@@ -43,7 +43,7 @@ const Wrapper = styled.div`
 
     .card-thumb-container{
         height: 35px;
-        max-width: 70px;
+        max-width: 85px;
 
         position: relative;
         top: -135px;
