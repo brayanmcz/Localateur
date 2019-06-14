@@ -13,10 +13,10 @@ const Wrapper = styled.div`
     cursor: pointer;
 
     .card-image{
-        height: 100px;
-        width: 100%;
-        object-fit: cover;
-        border-radius: 5px;
+        height: 100px !important;
+        width: 100%!important;
+        object-fit: cover !important;
+        border-radius: 5px !important;
     }
 
     .card-text{
@@ -77,22 +77,15 @@ const Wrapper = styled.div`
 `;
 
 class RestaurantCardImage extends Component {
-
-    static defaultProps = {
-        src: "test",
-        alt: "test",
-        name: "test",
-        thumbs: "test"
-    }
-
     render() {
         const { src, alt, name, thumbs } = this.props;
         return (
             <Wrapper {...this.props}>
-                <img className="card-image" src={src} alt={alt} />
+                { (src !== undefined ? <img className="card-image" src={src} alt={alt} /> : <img className="card-image" src={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAA1BMVEWAgICQdD0xAAAAPUlEQVR4nO3BAQ0AAADCoPdPbQ8HFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8GadCAABYe850QAAAABJRU5ErkJggg=="} alt={alt} />)}
                 <p className="card-text">{name}</p>
                 <div className="card-thumb-container">
-                    <p className="thumb-align">{thumbs}</p>
+                
+                <p className="thumb-align">{thumbs > 999 ? (thumbs / 1000).toFixed(1).toString() + "k" : thumbs}</p>
                     <MDBIcon className="card-thumb-icon" icon="thumbs-up" size="sm" />
                 </div>
             </Wrapper>

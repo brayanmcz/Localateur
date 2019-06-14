@@ -10,6 +10,8 @@ import {
   MDBBtn
 } from "mdbreact";
 import { Link } from 'react-router-dom';
+import { SetupAccountModal } from '../shared/SetupAccountModal';
+import { Redirect } from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -55,7 +57,9 @@ const Wrapper = styled.div`
     box-shadow: 0 0 0 0 white;
   }
   .flat:active{
-    box-shadow: 0 0 0 0 red;
+    background-color: red;
+    border-bottom: 1 px solid black;
+    box-shadow: 0 0 0 0 white;
   }
   .flat:link{
     box-shadow: 0 0 0 0 white;
@@ -72,15 +76,29 @@ const Wrapper = styled.div`
 `;
 
 class UserProfilePage extends Component {
+
+  state = {
+    redirect: false
+  }
+
+  redirectToCreate = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
   render() {
-    return (
+    return (this.state.redirect ? 
+      <Redirect to="/create" /> 
+      :
       <Wrapper>
         <MDBContainer>
+          <SetupAccountModal redirect={this.redirectToCreate} />
           <MDBRow>
             <MDBCol>
               <MDBCard>
                 <MDBCardHeader className="avatar-header" color="red">
-                <div class="avatar-container">
+                <div className="avatar-container">
                   <img
                     className="user-avatar"
                     src="https://lh5.googleusercontent.com/-o25W57-3VpU/AAAAAAAAAAI/AAAAAAAAD34/PVm1zwCabLk/photo.jpg"

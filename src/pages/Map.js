@@ -27,7 +27,7 @@ export class MapPage extends Component {
         {this.state.isListOpen === true ? 
           <>
             <Map height="calc(50vh - 46px)"  width="100vw"/>
-            <List className="list" height="calc(50vh)" />
+            <List className="list" height="calc(50vh)" restaurants={this.props.restaurants} />
           </>
          : 
           <Map height="calc(100vh - 46px)"  width="100vw"/>

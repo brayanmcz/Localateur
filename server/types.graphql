@@ -61,8 +61,8 @@ type Post @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
-  hashtag: Hashtag! @relation(name: "HashtagPosts")
-  content: Content! @relation(name: "PostContent")
+  hashtag: Hashtag @relation(name: "HashtagPosts")
+  content: Content @relation(name: "PostContent")
   account: Account @relation(name: "AccountPosts")
 }
 
@@ -75,14 +75,15 @@ type Restaurant @model {
   createdAt: DateTime!
   updatedAt: DateTime!
 
+  name: String!
   images: [String!]
   visits: Int! @defaultValue(value: 0)
   thumbs: Int! @defaultValue(value: 0)
 
-  owner: Owner! @relation(name: "OwnerRestaurant")
+  owner: Owner @relation(name: "OwnerRestaurant")
   visitors: [Consumer!]! @relation(name: "RestaurantVisitors")
-  story: Story! @relation(name: "RestaurantStory")
-  location: Location! @relation(name: "RestaurantLocation")
+  story: Story @relation(name: "RestaurantStory")
+  location: Location @relation(name: "RestaurantLocation")
   amenities: [Amenity!]! @relation(name: "RestaurantsAmenities")
   categories: [Category!]! @relation(name: "RestaurantsCategories")
   reviews: [Review!]! @relation(name: "RestaurantReviews")
@@ -124,7 +125,7 @@ type Location @model {
   lat: Float!
   lng: Float!
 
-  restaurant: Restaurant! @relation(name: "RestaurantLocation")
+  restaurant: Restaurant @relation(name: "RestaurantLocation")
 }
 
 type Content @model {
@@ -153,7 +154,8 @@ type Amenity @model {
 
   name: String!
   description: String
-  extra: String
+  icon: String!
+  color: String!
 
   restaurant: [Restaurant!]! @relation(name: "RestaurantsAmenities")
 }
@@ -166,4 +168,14 @@ enum Thumbs {
   AMBIENCE
   FOOD
   SERVICE
+}
+
+enum Days {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
 }
