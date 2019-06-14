@@ -20,10 +20,8 @@ import { Navbar } from "./shared/Navbar";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
-//Geocode Imports
-import Geocode from 'react-geocode';
-
-Geocode.setApiKey("AIzaSyDiDLXMnE76vMVZ-xfbMFaWriBS_gs4lQY");
+//Geolocation Import
+import { geolocated } from "react-geolocated";
 
 const AppWrapper = styled.div``;
 
@@ -73,15 +71,24 @@ const GET_RESTAURANTS = gql`
 `;
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allRestaurants: null
-    };
+  state = {
+    allRestaurants: null,
+    minLat: -122.559032,
+    maxLat: -121.559032,
+    minLng: 37.048384,
+    maxLng: 38.048384
   }
 
   getLocation = () => {
-
+    if (this.props.isGeolocationAvailable && this.props.coords)
+    {
+      this.setState({
+        minLat: this.props.coords.latitude - 0.05,
+        maxLat: this.props.coords.latitude + 0.05,
+        minLng: this.props.coords.longitude - 0.05,
+        maxLng: this.props.coords.longitude + 0.05,
+      });
+    }
   }
 
   componentDidMount() {
@@ -90,6 +97,7 @@ class App extends Component {
         allRestaurants: ret.data.allRestaurants
       });
     });
+    this.getLocation();
   }
 
   render() {
@@ -106,7 +114,12 @@ class App extends Component {
                 );
               }}
             />
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={ () => {
+              return this.state.allRestaurants !== null ? (
+                  <HomePage restaurants={this.state.allRestaurants} />
+                ) : (
+                  <></>
+                );}} />
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/profile/:id" component={UserProfilePage} />
@@ -128,12 +141,19 @@ class App extends Component {
   }
 }
 
+const geolocatedApp = geolocated({
+  positionOptions: {
+    enableHighAccuracy: false,
+  },
+  userDecisionTimeout: 5000,
+})(App);
+
 const AppWithRestaurants = graphql(GET_RESTAURANTS, {
   name: "allRestaurantsQuery",
-  options: props => ({
+  options: () => ({
     variables: { latMin: 10.1, lngMin: 10.1, latMax: 10.2, lngMax: 10.2 },
     fetchPolicy: "network-only"
   })
-})(App);
+})(geolocatedApp);
 
 export default AppWithRestaurants;
