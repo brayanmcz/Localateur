@@ -294,15 +294,15 @@ class SignUpPage extends Component {
         </Wrapper>
       );
     }
-    return (
-      <Wrapper>
-        <p>
-          Welcome {firebase.auth().currentUser.displayName}! You are now
-          signed-in!
-        </p>
-        <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
-      </Wrapper>
-    );
+    // return (
+    //   <Wrapper>
+    //     <p>
+    //       Welcome {firebase.auth().currentUser.displayName}! You are now
+    //       signed-in!
+    //     </p>
+    //     <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
+    //   </Wrapper>
+    // );
   }
 }
 

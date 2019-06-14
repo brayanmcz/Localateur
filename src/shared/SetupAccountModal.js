@@ -28,34 +28,32 @@ class SetupAccountModal extends Component {
   };
 
   render() {
-    {
-      return (
-        <MDBContainer>
-          <MDBModal
-            isOpen={this.state.modal1}
-            toggle={this.toggle(1)}
-            frame
-            position="bottom"
-          >
-            <MDBModalBody className="text-center">
-              <MDBRow>
-                <MDBCol size="12" className="mt-5 mb-3">
-                  <h1>OH NO!</h1>
-                  You have not set up your account. How would you like to
-                  continue?
-                </MDBCol>
-              </MDBRow>
-              <MDBBtn color="primary" onClick={this.redirect}>
-                Setup Account
-              </MDBBtn>
-              <MDBBtn color="danger" outline onClick={this.toggle(1)}>
-                Close
-              </MDBBtn>
-            </MDBModalBody>
-          </MDBModal>
-        </MDBContainer>
-      );
-    }
+    return (
+      <MDBContainer>
+        <MDBModal
+          isOpen={this.state.modal1}
+          toggle={this.toggle(1)}
+          frame
+          position="bottom"
+        >
+          <MDBModalBody className="text-center">
+            <MDBRow>
+              <MDBCol size="12" className="mt-5 mb-3">
+                <h1>OH NO!</h1>
+                You have not set up your account. How would you like to
+                continue?
+              </MDBCol>
+            </MDBRow>
+            <MDBBtn color="primary" onClick={this.redirect}>
+              Setup Account
+            </MDBBtn>
+            <MDBBtn color="danger" outline onClick={this.toggle(1)}>
+              Close
+            </MDBBtn>
+          </MDBModalBody>
+        </MDBModal>
+      </MDBContainer>
+    );
   }
 }
 

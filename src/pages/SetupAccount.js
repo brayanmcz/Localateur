@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask, MDBContainer } from 'mdbreact';
+import { MDBCarousel, MDBCarouselInner, MDBCarouselItem, MDBView, MDBContainer } from 'mdbreact';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -12,10 +12,23 @@ const Wrapper = styled.div`
 `;
 
 class SetupAccountPage extends Component{
+
+  state = {
+    
+    first: "",
+    last: "",
+    birthdate: {
+      month: null,
+      day: null,
+      year: null
+    },
+
+
+  }
+
   render () {
   return (
     <Wrapper>
-
     <MDBContainer>
       <MDBCarousel
         activeItem={1}
