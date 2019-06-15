@@ -5,6 +5,7 @@ type Account @model{
   createdAt: DateTime!
   updatedAt: DateTime!
 
+  hasSetup: Boolean! @defaultValue(value: false)
   authID: String!
   firstName: String!
   lastName: String!
