@@ -30,12 +30,13 @@ const Wrapper = styled.div`
   }
 
   input:focus{
-    margin-left: 15px;
+    box-shadow: 0px 0px 5px white;
+    border: 1px solid white;
   }
 
   input::placeholder{
     color: white !important;
-    font-weight: 200
+    font-weight: 200;
   }
 
   .small{
@@ -46,7 +47,7 @@ const Wrapper = styled.div`
 `;
 
 class SetupAccountPage extends Component {
-    state = {
+  state = {
     fname: "",
     lname: "",
     email: "",
@@ -81,135 +82,133 @@ class SetupAccountPage extends Component {
             <MDBCarouselInner>
               <MDBCarouselItem itemId="1">
                 <MDBView>
-                <div>
-        <form
-          className="needs-validation"
-          onSubmit={this.submitHandler}
-          noValidate
-        >
-          <MDBRow>
-            <MDBCol>
+                  <div>
+                    <form
+                      className="needs-validation"
+                      onSubmit={this.submitHandler}
+                      noValidate
+                    >
+                      <MDBRow>
+                        <MDBCol md="4" className="mb-3">
 
-            </MDBCol>
-            <MDBCol md="4" className="mb-3">
-             
-              <input
-                value={this.state.fname}
-                name="fname"
-                onChange={this.changeHandler}
-                type="text"
-                id="defaultFormRegisterNameEx"
-                className="form-control"
-                placeholder="First Name"
-                required
-              />
-              <div className="valid-feedback">Looks good!</div>
-            </MDBCol>
-            <MDBCol md="4" className="mb-3">
-             
-              <input
-                value={this.state.lname}
-                name="lname"
-                onChange={this.changeHandler}
-                type="text"
-                id="defaultFormRegisterEmailEx2"
-                className="form-control"
-                placeholder="Last name"
-                required
-              />
-              <div className="valid-feedback">Looks good!</div>
-            </MDBCol>
-            <MDBCol md="4" className="mb-3">
-             
-              <input
-                value={this.state.email}
-                onChange={this.changeHandler}
-                type="email"
-                id="defaultFormRegisterConfirmEx3"
-                className="form-control"
-                name="email"
-                placeholder="Email address"
-              />
-              <small id="emailHelp" className="small">
-                We'll never share your email with anyone else.
-              </small>
-            </MDBCol>
-          </MDBRow>
-          <MDBRow>
-            <MDBCol md="4" className="mb-3">
-              
-              <input
-                value={this.state.city}
-                onChange={this.changeHandler}
-                type="text"
-                id="defaultFormRegisterPasswordEx4"
-                className="form-control"
-                name="city"
-                placeholder="City"
-                required
-              />
-              <div className="invalid-feedback">
-                Please provide a valid city.
-              </div>
-              <div className="valid-feedback">Looks good!</div>
-            </MDBCol>
-            <MDBCol md="4" className="mb-3">
-              
-              <input
-                value={this.state.state}
-                onChange={this.changeHandler}
-                type="text"
-                id="defaultFormRegisterPasswordEx4"
-                className="form-control"
-                name="state"
-                placeholder="State"
-                required
-              />
-              <div className="invalid-feedback">
-                Please provide a valid state.
-              </div>
-              <div className="valid-feedback">Looks good!</div>
-            </MDBCol>
-            <MDBCol md="4" className="mb-3">
-              
-              <input
-                value={this.state.zip}
-                onChange={this.changeHandler}
-                type="text"
-                id="defaultFormRegisterPasswordEx4"
-                className="form-control"
-                name="zip"
-                placeholder="Zip"
-                required
-              />
-              <div className="invalid-feedback">
-                Please provide a valid zip.
-              </div>
-              <div className="valid-feedback">Looks good!</div>
-            </MDBCol>
-          </MDBRow>
-          <MDBCol md="4" className="mb-3">
-            <div className="custom-control custom-checkbox pl-3">
-              <input
-                className="custom-control-input"
-                type="checkbox"
-                value=""
-                id="invalidCheck"
-                required
-              />
-              <label className="custom-control-label" htmlFor="invalidCheck">
-                Agree to terms and conditions
-              </label>
-              <div className="invalid-feedback">
-                You must agree before submitting.
-              </div>
-            </div>
-          </MDBCol>
-          <MDBBtn color="primary" type="submit">
-            Submit Form
-          </MDBBtn>
-        </form>
-      </div>
+                          <input
+                            value={this.state.fname}
+                            name="fname"
+                            onChange={this.changeHandler}
+                            type="text"
+                            id="defaultFormRegisterNameEx"
+                            className="form-control"
+                            placeholder="First Name"
+                            required
+                          />
+                          <div className="valid-feedback">Looks good!</div>
+                        </MDBCol>
+                        <MDBCol md="4" className="mb-3">
+
+                          <input
+                            value={this.state.lname}
+                            name="lname"
+                            onChange={this.changeHandler}
+                            type="text"
+                            id="defaultFormRegisterEmailEx2"
+                            className="form-control"
+                            placeholder="Last name"
+                            required
+                          />
+                          <div className="valid-feedback">Looks good!</div>
+                        </MDBCol>
+                        <MDBCol md="4" className="mb-3">
+
+                          <input
+                            value={this.state.email}
+                            onChange={this.changeHandler}
+                            type="email"
+                            id="defaultFormRegisterConfirmEx3"
+                            className="form-control"
+                            name="email"
+                            placeholder="Email address"
+                          />
+                          <small id="emailHelp" className="small">
+                            We'll never share your email with anyone else.
+                          </small>
+                        </MDBCol>
+                      </MDBRow>
+                      <MDBRow>
+                        <MDBCol md="4" className="mb-3">
+                          <input
+                            value={this.state.city}
+                            onChange={this.changeHandler}
+                            type="text"
+                            id="defaultFormRegisterPasswordEx4"
+                            className="form-control"
+                            name="city"
+                            placeholder="City"
+                            required
+                          />
+                          <div className="invalid-feedback">
+                            Please provide a valid city.
+                          </div>
+                          <div className="valid-feedback">Looks good!</div>
+                        </MDBCol>
+                        <MDBCol md="4" className="mb-3">
+
+                          <input
+                            value={this.state.state}
+                            onChange={this.changeHandler}
+                            type="text"
+                            id="defaultFormRegisterPasswordEx4"
+                            className="form-control"
+                            name="state"
+                            placeholder="State"
+                            required
+                          />
+                          <div className="invalid-feedback">
+                            Please provide a valid state.
+                          </div>
+                          <div className="valid-feedback">Looks good!</div>
+                        </MDBCol>
+                        <MDBCol md="4" className="mb-3">
+                          <input
+                            value={this.state.zip}
+                            onChange={this.changeHandler}
+                            type="text"
+                            id="defaultFormRegisterPasswordEx4"
+                            className="form-control"
+                            name="zip"
+                            placeholder="Zip"
+                            required
+                          />
+                          <div className="invalid-feedback">
+                            Please provide a valid zip.
+                          </div>
+                          <div className="valid-feedback">Looks good!</div>
+                        </MDBCol>
+                      </MDBRow>
+                      {/* <MDBCol md="4" className="mb-3">
+                      <div className="custom-control custom-checkbox pl-3">
+                        <input
+                          className="custom-control-input"
+                          type="checkbox"
+                          value=""
+                          id="invalidCheck"
+                          required
+                        />
+                        <label className="custom-control-label" htmlFor="invalidCheck">
+                          Agree to terms and conditions
+                        </label>
+                        <div className="invalid-feedback">
+                          You must agree before submitting.
+                        </div>
+                      </div>
+                    </MDBCol> */}
+                      <MDBBtn color="red" type="submit">
+                        Start Creating 
+                      </MDBBtn>
+                      <MDBBtn color="primary" type="submit">
+                        I am an Owner
+                      </MDBBtn>
+                    </form>
+                  </div>
                 </MDBView>
               </MDBCarouselItem>
               <MDBCarouselItem itemId="2">

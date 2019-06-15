@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
-
-import styled from 'styled-components';
+import React, { Component } from "react";
+import firebase from "firebase";
+import { Recommended } from "../shared/lrn_cardRecommend";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
 
@@ -39,6 +39,7 @@ class HomePage extends Component{
       }
         return (
             <Wrapper>
+                <Recommended />
                 <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
             </Wrapper>
           );
