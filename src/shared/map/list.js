@@ -40,6 +40,10 @@ const Wrapper = styled.div`
 `;
 
 export class List extends Component {
+  
+  componentDidMount() {
+    console.log("LIST: ", this.props.restaurants);
+  }
   render() {
     return (
       <Wrapper {...this.props}>
