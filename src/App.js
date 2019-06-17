@@ -10,6 +10,7 @@ import { SignUpPageWithMutation as SignUpPage } from "./pages/SignUp";
 import { UserProfilePage } from "./pages/UserProfile";
 import { MapPage } from "./pages/Map";
 import { SetupAccountPage } from "./pages/SetupAccount";
+import { FilterPage } from "./pages/Filter";
 // import { BusinessSetupPage } from "./pages/BusinessSetup"; 
 
 //Imported Components
@@ -123,6 +124,7 @@ class App extends Component {
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/profile/:id" component={UserProfilePage} />
+            <Route exact path="/filter" component= { FilterPage } />
             <Route
               path="/map"
               component={() => {
