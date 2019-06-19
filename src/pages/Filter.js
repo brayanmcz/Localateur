@@ -140,7 +140,7 @@ class FilterPage extends Component {
                 <MDBRow>
                     <MDBCol size="12" className="mt-5">
                     {this.availableCategories.map((foodType, index) => {
-                        console.log(this.state);
+                        console.log(foodType);
                         return (
                             <span
                                 key={index}
