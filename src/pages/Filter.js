@@ -82,6 +82,13 @@ class FilterPage extends Component {
         "Market"
     ];
 
+    handleActiveCategoryUpdate = (cat) => {
+        this.state.activeCategories.includes(cat) ?
+          this.addCat(cat)
+          :
+          this.removeCat(cat);
+      }
+
     handleCuisineToggle = (foodType) => {
         //Code for removing from selectedFoods on Filter page.
 //if statement checking if button being clicked is (already selected)
@@ -108,14 +115,14 @@ class FilterPage extends Component {
     };
 
     handleClick = () => {
-        this.props.updateFilters(this.state.selectedCategories);
-        this.props.closeFilter();
+        // this.props.updateFilters(this.state.selectedCategories);
+        // this.props.closeFilter();
     }
 
     componentDidMount = () => {
         this.setState({
             selectedCategories: this.props.categoryFilters
-        })
+        });
     }
 
     render (){
@@ -133,6 +140,7 @@ class FilterPage extends Component {
                 <MDBRow>
                     <MDBCol size="12" className="mt-5">
                     {this.availableCategories.map((foodType, index) => {
+                        console.log(this.state);
                         return (
                             <span
                                 key={index}

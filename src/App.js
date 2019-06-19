@@ -124,7 +124,7 @@ class App extends Component {
             <Route exact path="/signin" component={SignInPage} />
             <Route exact path="/signup" component={SignUpPage} />
             <Route exact path="/profile/:id" component={UserProfilePage} />
-            <Route exact path="/filter" component= { FilterPage } />
+            <Route exact path="/filter" component={() => <FilterPage categoryFilters={[]} />} />
             <Route
               path="/map"
               component={() => {

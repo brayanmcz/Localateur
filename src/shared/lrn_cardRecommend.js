@@ -6,13 +6,17 @@ const Wrapper = styled.div`
     .rec {
         height: 150px;
         margin: auto;
-        margin-top: 65px;
+        margin-top: 32px;
         background-image: url("https://cdn.pixabay.com/photo/2015/03/26/10/28/restaurant-691397__340.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         border: 5px solid #F44336;
         border-radius: 10px;
+    }
+
+    .container {
+        width: 630px;
     }
 
     .btn {
@@ -68,7 +72,7 @@ export class Recommended extends Component {
     render() {
         return (
             <Wrapper>
-                <MDBContainer>
+                <MDBContainer className="container">
                     <MDBRow>
                         <MDBCol className="rec" size="12">
                             <MDBRow>
