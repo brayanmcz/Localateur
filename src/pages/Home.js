@@ -8,7 +8,11 @@ import Buttons from "../shared/Buttons_cmp";
 
 const Wrapper = styled.div`
   margin-top: 70px;
+  width: 100vw;
 
+  .center{
+    text-align: center;
+  }
 `;
 
 class HomePage extends Component{
@@ -41,10 +45,12 @@ class HomePage extends Component{
             </Wrapper>
           );
       }
-        return (
+      else{
+
+      return (
             <Wrapper>
-              <div align="center" className="searchVideoDiv">
-                <Search></Search>
+              <div align="center" className="searchVideoDiv center">
+                <Search/>
                 <Buttons></Buttons>
                 <VideoCmpt />
               </div>
@@ -52,6 +58,7 @@ class HomePage extends Component{
                 <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
             </Wrapper>
           );
+      }
     }
 }
 

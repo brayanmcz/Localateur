@@ -2,18 +2,14 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-align="center";
-    iframe:focus { 
-        outline: none;
-      }
 `
 
 class VideoCmpt extends Component {
     render () {
         return (
             <Wrapper>
-                <div >
-                    <iframe title="featured_video" width="600" height="315" src="https://www.youtube.com/embed/yCCyJD7cVKU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div className="video-container">
+                    <iframe title="featured_video" src="https://www.youtube.com/embed/yCCyJD7cVKU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
             </Wrapper>
             )

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     }
 
     .container {
-        width: 630px;
+        width: 100vw;
     }
 
     .btn {

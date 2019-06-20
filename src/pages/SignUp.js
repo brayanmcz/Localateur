@@ -18,7 +18,7 @@ import { graphql } from "react-apollo"
 import gql from "graphql-tag"
 
 const uiConfig = {
-  signInFlow: "popup",
+  signInFlow: "redirect",
   signInSuccessUrl: "/",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,

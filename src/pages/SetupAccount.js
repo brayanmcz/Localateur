@@ -75,11 +75,13 @@ class SetupAccountPage extends Component {
 
   render() {
     return (
+      <MDBAnimation type="fadeIn" length="slow">
+
       <Wrapper>
         <MDBContainer>
           <MDBRow>
             <MDBCol >
-            <MDBAnimation type={this.state.activeItem === 1 ? "slideInRight" : "slideOutLeft"}>
+            <MDBAnimation type={this.state.activeItem === 1 ? "slideInRight fadeIn" : "slideOutLeft"} delay="0.5s">
               <SelectAccountType hidden={this.state.activeItem !== 1} handleClick={this.nextSlide}/>
             </MDBAnimation>
             <MDBAnimation type={this.state.activeItem === 2 ? "slideInRight" : "slideOutLeft"}>
@@ -89,7 +91,9 @@ class SetupAccountPage extends Component {
           </MDBRow>
         </MDBContainer>
       </Wrapper>
-    );
+      </MDBAnimation>
+
+      );
   }
 }
 
